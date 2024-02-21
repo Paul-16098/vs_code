@@ -12,6 +12,8 @@
 
 - [list](#list)
   - [目錄](#目錄)
+  - [未完成](#未完成)
+  - [已完成](#已完成)
     - [git](#git)
     - [69shuba auto 書簽 updata](#69shuba-auto-書簽-updata)
 
@@ -19,14 +21,16 @@
 
 ---
 
+## 未完成
+
+---
+
+## 已完成
+
 ### git
 
 [ X ]
 
----
-
 ### 69shuba auto 書簽 updata
 
 [ X ]
-
----
