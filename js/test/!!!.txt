@@ -1,0 +1,12 @@
+你可以使用 npm 進行一些常用操作：
+
+npm search <NAME>
+已知的模組名稱進行搜尋檢查可用安裝與版本資訊
+npm install | update | uninstall <NAME>
+對已安裝過後的模組進行版本安裝、升級、移除。
+npm help
+查找 npm 相關指令
+npm cache clear
+清除 npm 本地暫存
+npm publish|unpublish <package>@<version>
+將目前專案目錄發佈到 npm 套件管理系統給 Nodejs 社羣使用，也能取消指定的某版本

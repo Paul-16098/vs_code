@@ -1,0 +1,30 @@
+{
+    // 使用 IntelliSense 以得知可用的屬性。
+    // 暫留以檢視現有屬性的描述。
+    // 如需詳細資訊，請瀏覽: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+    
+        {
+            "type": "java",
+            "name": "startFastList",
+            "request": "launch",
+            "mainClass": "startFastList",
+            "projectName": "vs_code_3170d77a"
+        },
+        {
+            "type": "java",
+            "name": "startFastList",
+            "request": "launch",
+            "mainClass": "startFastList",
+            "projectName": "vs code_2df90ebb"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "對 localhost 啟動 Chrome",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}

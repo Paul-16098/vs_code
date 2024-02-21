@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)file:///C:/Users/p/Documents/vs%20code/html/Crt%20Toold.html -->
+<html lang="zh-tw" fr-init-redundantcheck="true">
+
+<head>
+	<link href="../../favicon.ico" rel="ICON">
+</head>
+
+<body>
+	<h1 style="color: black;" class="fr-fix-100b84e1">Crt tools-v.0.1.2</h1>
+	<h2 class="fr-fix-100b84e1">版本：V0.1.2</h2>
+	<form id="body">
+		輸入你所設置的名稱：
+		<input type="text" id="dmname" ,value="">
+		<br><br>
+		輸入你想要獲得物品的代碼：
+		<input type="text" id="jqname" ,value="">
+		<br><br>
+		輸入物品代碼：
+		<br>
+		<input id="1" ,type="text" ,value="">
+		<input id="2" ,type="text" ,value="">
+		<input id="3" ,type="text" ,value="">
+		<br><br>
+		<input id="4" ,type="text" ,value="">
+		<input id="5" ,type="text" ,value="">
+		<input id="6" ,type="text" ,value="">
+		<br><br>
+		<input id="7" ,type="text" ,value="">
+		<input id="8" ,type="text" ,value="">
+		<input id="9" ,type="text" ,value="">
+		<br><br>
+		<input id="reset" type="reset" value="重置">
+	</form>
+	<br><br>
+	輸入好代碼 請點擊
+	<button id="touch">生成</button>
+	<br><br>
+	結果在這裡：<p id="p_jieguo"></p>
+	<hr>
+	<p><strong class="fr-fix-100b84e1">本次版本：v.0.1.2</strong></p>
+	<ul>
+		<strong style="font-size: large;letter-spacing: 1px;" class="fr-fix-100b84e1">
+			<li class="fr-fix-100b84e1">
+				重置得更乾淨
+			</li>
+		</strong>
+	</ul>
+	<p>
+		歷代版本：V0.1.1
+	</p>
+	<ul>
+		<li>
+			再次優化代碼結構，可以重複點擊生成
+		</li>
+	</ul>
+	<p>
+		歷代版本：V0.1.1
+	</p>
+	<ul>
+		<li>優化了代碼結構</li>
+		<li>不需要手動添加&lt;minecraft:air&gt;</li>
+		<li>測試版本的一些小bug已經解決</li>
+	</ul>
+	<script>
+		function generate() {
+			let a = document.getElementById("1").value === '' ? '&ltitem:minecraft:air&gt' : '&ltitem:' + document.getElementById('1').value + '&gt';
+			let b = document.getElementById("2").value === '' ? '&ltitem:minecraft:air&gt' : '&ltitem:' + document.getElementById('2').value + '&gt';
+			let c = document.getElementById("3").value === '' ? '&ltitem:minecraft:air&gt' : '&ltitem:' + document.getElementById('3').value + '&gt';
+			let d = document.getElementById("4").value === '' ? '&ltitem:minecraft:air&gt' : '&ltitem:' + document.getElementById('4').value + '&gt';
+			let e = document.getElementById("5").value === '' ? '&ltitem:minecraft:air&gt' : '&ltitem:' + document.getElementById('5').value + '&gt';
+			let f = document.getElementById("6").value === '' ? '&ltitem:minecraft:air&gt' : '&ltitem:' + document.getElementById('6').value + '&gt';
+			let g = document.getElementById("7").value === '' ? '&ltitem:minecraft:air&gt' : '&ltitem:' + document.getElementById('7').value + '&gt';
+			let h = document.getElementById("8").value === '' ? '&ltitem:minecraft:air&gt' : '&ltitem:' + document.getElementById('8').value + '&gt';
+			let i = document.getElementById("9").value === '' ? '&ltitem:minecraft:air&gt' : '&ltitem:' + document.getElementById('9').value + '&gt';
+
+			let dmn = '"' + document.getElementById('dmname').value + '"';
+			let jqn = "&ltitem:" + document.getElementById('jqname').value + '&gt';
+
+			let result =
+				`craftingTable.addShaped(${dmn}, ${jqn}, [
+    [${a}, ${b}, ${c}],
+    [${d}, ${e}, ${f}],
+    [${g}, ${h}, ${i}]
+]);
+`;
+			result = result.replace(/\n/g, "<br>");
+			result = result.replace(/ /g, "&nbsp;");
+			document.getElementById('p_jieguo').innerHTML = result;
+		};
+
+		document.getElementById('touch').addEventListener("click", generate);
+		document.getElementById('reset').addEventListener("click",
+			function () {
+				document.getElementById('p_jieguo').innerHTML = null;
+			}
+		);
+		document.getElementById('touch').addEventListener("click", copyToClipboard(document.getElementById('p_jieguo').innerHTML));
+		function copyToClipboard(text) {
+			try {
+				// 创建一个临时的 textarea 元素
+				const textarea = document.createElement('textarea');
+				textarea.value = text;
+
+				// 将 textarea 元素添加到 DOM 中
+				document.body.appendChild(textarea);
+
+				// 选择文本并复制到剪贴板
+				textarea.select();
+				document.execCommand('copy');
+
+				// 移除临时的 textarea 元素
+				document.body.removeChild(textarea);
+			} catch (e) {
+				debug(e, "复制密码失败(copyToClipboard)");
+				navigator.clipboard.writeText(text).then(() => {
+					debug('密码已复制到剪贴板(managePasswords)');
+				}, (e) => {
+					debug(e, '复制密码失败(managePasswords)');
+				});
+			};
+		};
+	</script>
+	<div
+		style="position: fixed; background-color: rgba(86, 156, 214, 0.8); pointer-events: none; z-index: 2147483647 !important;">
+	</div>
+</body>
+
+</html>
