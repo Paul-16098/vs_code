@@ -10,3 +10,12 @@ npm cache clear
 清除 npm 本地暫存
 npm publish|unpublish <package>@<version>
 將目前專案目錄發佈到 npm 套件管理系統給 Nodejs 社羣使用，也能取消指定的某版本
+
+npm install 安裝專案中的所有依賴項
+npm install <foo> 將 <foo> 依賴項新增至您的專案中
+npm test 運行該專案的測試
+npm run <foo> 執行名為 <foo> 的腳本
+npm <指令> -h <指令> 的快速幫助
+npm -l 顯示所有指令的使用訊息
+npm help <term> 搜尋 <term> 的幫助（在瀏覽器中）
+npm 幫助 npm 更多相關概述（在瀏覽器中）
