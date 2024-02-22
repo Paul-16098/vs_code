@@ -1,3 +1,5 @@
+/** @format */
+
 // ==UserScript==
 // @name         ixdzs8.tw
 // @namespace    pl816098
@@ -14,8 +16,8 @@
 // @updateURL https://update.greasyfork.org/scripts/484505/ixdzs8tw.meta.js
 // ==/UserScript==
 
-var url = window.location.href;
-var pattern = {
+let url = window.location.href;
+let pattern = {
   book: /^(https?:\/\/)(ixdzs8\.tw\/read\/[0-9]*\/(?!end)p[0-9]*\.html)$/gm,
   info: /^(https?:\/\/)(ixdzs8\.tw\/read\/[0-9]*\/)$/gm,
   end: /^(https?:\/\/)(ixdzs8\.tw\/read\/[0-9]*\/end\.html)$/gm,

@@ -88,7 +88,15 @@ let pattern = {
     },
   },
 };
+let ele = [];
 if (pattern.book.is(url)) {
+  ele = [
+    "#pageheadermenu",
+    "body > div.container > div.mybox > div.top_Scroll",
+    "body > div.container > div.yuedutuijian.light",
+    "#tuijian",
+    "#ad",
+  ];
   // console.log("book");
   document.querySelector("#a_addbookcase").click();
   let author = "";
@@ -116,27 +124,11 @@ if (pattern.book.is(url)) {
         margin: -71px -75px;
         width: auto;
     }`);
-  if (document.querySelector("#pageheadermenu")) {
-    document.querySelector("#pageheadermenu").remove();
-  }
-  if (
-    document.querySelector("body > div.container > div.mybox > div.top_Scroll")
-  ) {
-    document
-      .querySelector("body > div.container > div.mybox > div.top_Scroll")
-      .remove();
-  }
-  if (document.querySelector("body > div.container > div.yuedutuijian.light")) {
-    document
-      .querySelector("body > div.container > div.yuedutuijian.light")
-      .remove();
-  }
-  if (document.querySelector("#tuijian")) {
-    document.querySelector("#tuijian").remove();
-  }
-  if (document.querySelector("#ad")) {
-    document.querySelector("#ad").remove();
-  }
+  ele.forEach((ele) => {
+    if (document.querySelector(ele)) {
+      document.querySelector(ele).remove();
+    }
+  });
 }
 if (pattern.info.is(url)) {
   // console.log("info");
