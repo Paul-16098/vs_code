@@ -3,7 +3,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.7.6-beta
+// @version      2.7.7-beta
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -124,7 +124,8 @@ if (pattern.book.is(url)) {
   _GM_addStyle(`
   /** @format */
 
-  .container .mybox {
+  .container,
+  .mybox {
     max-width: none !important;
     min-width: 0px !important;
     max-height: none !important;
