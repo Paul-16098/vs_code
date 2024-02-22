@@ -3,7 +3,7 @@
 // ==UserScript==
 // @name         czbooks.net
 // @namespace    pl816098
-// @version      1.0.9
+// @version      1.1.0
 // @description  自用
 // @author       pl816098
 // @match        https://czbooks.net/n/*/*
@@ -28,11 +28,15 @@ GM_addStyle(`
   margin-left: -4em;
 }
 `);
-document.querySelector("body > div.header").remove();
-document.querySelector("body > div.footer").remove();
-document.querySelector("body > div.main > div:nth-child(3)").remove();
-document.querySelector("#go-to-top").remove();
-document
-  .querySelector("#sticky-parent > div.chapter-detail > div.notice")
-  .remove();
-document.querySelector("div.download-notice").remove();
+let ele = [
+  "body > div.header",
+  "body > div.footer",
+  "body > div.main > div:nth-child(3)",
+  "#go-to-top",
+  "#sticky-parent > div.chapter-detail > div.notice",
+];
+ele.forEach((ele) => {
+  if (document.querySelector(ele)) {
+    document.querySelector(ele).remove();
+  }
+});
