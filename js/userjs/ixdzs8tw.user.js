@@ -16,18 +16,72 @@
 // @updateURL https://update.greasyfork.org/scripts/484505/ixdzs8tw.meta.js
 // ==/UserScript==
 
+set_gm: {
+  var _GM_xmlhttpRequest,
+    _GM_registerMenuCommand,
+    _GM_notification,
+    _GM_addStyle,
+    _GM_openInTab,
+    _GM_info,
+    _GM_setClipboard;
+  GM_addStyle: {
+    if (typeof GM_addStyle !== "undefined") {
+      _GM_addStyle = GM_addStyle;
+    } else if (
+      typeof GM !== "undefined" &&
+      typeof GM.addStyle !== "undefined"
+    ) {
+      _GM_addStyle = GM.addStyle;
+    } else {
+      _GM_addStyle = (cssStr) => {
+        let styleEle = document.createElement("style");
+        styleEle.innerHTML = cssStr;
+        document.head.appendChild(styleEle);
+        return styleEle;
+      };
+    }
+  }
+}
 let url = window.location.href;
 let pattern = {
-  book: /^(https?:\/\/)(ixdzs8\.tw\/read\/[0-9]*\/(?!end)p[0-9]*\.html)$/gm,
-  info: /^(https?:\/\/)(ixdzs8\.tw\/read\/[0-9]*\/)$/gm,
-  end: /^(https?:\/\/)(ixdzs8\.tw\/read\/[0-9]*\/end\.html)$/gm,
+  book: {
+    pattern:
+      /^(https?:\/\/)(ixdzs8\.tw\/read\/[0-9]*\/(?!end)p[0-9]*\.html)$/gm,
+    is: (url) => {
+      if (pattern.book.pattern.test(url)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+  info: {
+    pattern: /^(https?:\/\/)(ixdzs8\.tw\/read\/[0-9]*\/)$/gm,
+    is: (url) => {
+      if (pattern.info.pattern.test(url)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+  end: {
+    pattern: /^(https?:\/\/)(ixdzs8\.tw\/read\/[0-9]*\/end\.html)$/gm,
+    is: (url) => {
+      if (pattern.end.pattern.test(url)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
 };
 
 if (pattern.book.test(url)) {
   document.querySelector("#page-id3").remove();
   document.querySelector("#page-toolbar").remove();
   document.querySelector("#page > article > section > p:nth-child(1)").remove();
-  GM_addStyle(`
+  _GM_addStyle(`
     .page-content{
 max-width: none;
 padding: 10px 15px;
