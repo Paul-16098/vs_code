@@ -76,7 +76,7 @@ let pattern = {
     pattern:
       /^(https?:\/\/)(www\.(69shuba|69xinshu)\.com)\/txt\/[0-9]*\/end\.html$/gm,
     is: () => {
-      // console.debug(document.querySelector("div.page1 > a:nth-child(4)"));
+      // console.log(document.querySelector("div.page1 > a:nth-child(4)"));
       if (
         pattern.end.pattern.test(
           document.querySelector("div.page1 > a:nth-child(4)")
@@ -121,6 +121,7 @@ if (pattern.book.is(url)) {
   aElement.style.color = "#007ead";
   spanElement.textContent = spanElement.textContent.trim().split(" ")[0];
   spanElement.appendChild(aElement);
+  console.log("_GM_addStyle start");
   _GM_addStyle(`
   /** @format */
 
@@ -134,6 +135,7 @@ if (pattern.book.is(url)) {
     height: auto !important;
   }
   `);
+  console.log("_GM_addStyle end");
   ele.forEach((ele) => {
     if (document.querySelector(ele)) {
       document.querySelector(ele).remove();

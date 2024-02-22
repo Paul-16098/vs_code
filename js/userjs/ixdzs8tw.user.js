@@ -78,9 +78,16 @@ let pattern = {
 };
 
 if (pattern.book.is(url)) {
-  document.querySelector("#page-id3").remove();
-  document.querySelector("#page-toolbar").remove();
-  document.querySelector("#page > article > section > p:nth-child(1)").remove();
+  ele = [
+    "#page-id3",
+    "#page-toolbar",
+    "#page > article > section > p:nth-child(1)",
+  ];
+  ele.forEach((ele) => {
+    if (document.querySelector(ele)) {
+      document.querySelector(ele).remove();
+    }
+  });
   _GM_addStyle(`
     .page-content{
 max-width: none;
