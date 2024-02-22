@@ -124,12 +124,12 @@ if (pattern.book.is(url)) {
   /** @format */
 
   .container .mybox {
-    max-width: none;
-    min-height: none;
-    width: auto;
-    height: auto;
+    max-width: none !important;
+    min-height: none !important;
+    width: auto !important;
+    height: auto !important;
   }
-  `);
+    `);
   ele.forEach((ele) => {
     if (document.querySelector(ele)) {
       document.querySelector(ele).remove();
