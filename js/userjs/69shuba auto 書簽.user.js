@@ -3,7 +3,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.7.9
+// @version      2.8.0
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -53,7 +53,7 @@ let pattern = {
   book: {
     pattern:
       /^(https?:\/\/)(www\.(69shuba|69xinshu)\.com)\/txt\/[0-9]*\/(?!end)[0-9]*$/gm,
-    is: (url) => {
+    is: (url = window.location.href) => {
       if (pattern.book.pattern.test(url)) {
         return true;
       } else {
@@ -64,7 +64,7 @@ let pattern = {
   info: {
     pattern:
       /^(https?:\/\/)(www\.(69shuba|69xinshu)\.com)\/book\/[0-9]*\.htm.*$/gm,
-    is: (url) => {
+    is: (url = window.location.href) => {
       if (pattern.info.pattern.test(url)) {
         return true;
       } else {
@@ -75,12 +75,13 @@ let pattern = {
   end: {
     pattern:
       /^(https?:\/\/)(www\.(69shuba|69xinshu)\.com)\/txt\/[0-9]*\/end\.html$/gm,
-    is: () => {
+    is: (url = window.location.href) => {
       // console.log(document.querySelector("div.page1 > a:nth-child(4)"));
       if (
         pattern.end.pattern.test(
           document.querySelector("div.page1 > a:nth-child(4)")
-        )
+        ) ||
+        pattern.end.pattern.test(url)
       ) {
         return true;
       } else {
@@ -158,7 +159,7 @@ if (pattern.info.is(url)) {
     "body > div.container > ul > li.col-8 > div:nth-child(1) > div > div.booknav2 > p:nth-child(3) > a"
   ).style.color = "#007ead";
 }
-if (pattern.end.is()) {
+if (pattern.end.is(url)) {
   // console.log("end");
   document.addEventListener("keydown", function (e) {
     if (!e.repeat) {
