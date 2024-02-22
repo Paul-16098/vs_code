@@ -15,8 +15,6 @@
 // ==/UserScript==
 
 GM_addStyle(`
-/** @format */
-
 #sticky-parent {
   width: auto;
 }
