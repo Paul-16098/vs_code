@@ -90,6 +90,7 @@ let pattern = {
 };
 let ele = [];
 if (pattern.book.is(url)) {
+  // console.log("book");
   ele = [
     "#pageheadermenu",
     "pagefootermenu",
@@ -98,7 +99,6 @@ if (pattern.book.is(url)) {
     "#tuijian",
     "#ad",
   ];
-  // console.log("book");
   document.querySelector("#a_addbookcase").click();
   let author = "";
   if (_unsafeWindow.bookinfo.author) {
@@ -121,10 +121,15 @@ if (pattern.book.is(url)) {
   spanElement.textContent = spanElement.textContent.trim().split(" ")[0];
   spanElement.appendChild(aElement);
   _GM_addStyle(`
+  /** @format */
+
   .container .mybox {
-        margin: -71px -75px;
-        width: auto;
-    }`);
+    max-width: none;
+    min-height: none;
+    width: auto;
+    height: auto;
+  }
+  `);
   ele.forEach((ele) => {
     if (document.querySelector(ele)) {
       document.querySelector(ele).remove();
