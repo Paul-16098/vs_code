@@ -15,6 +15,7 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=69shuba.com
 // @grant        window.close
 // @grant        GM_addStyle
+// @grant        GM.addStyle
 // @license      MIT
 // @downloadURL https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
 // @updateURL https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.meta.js
@@ -125,11 +126,13 @@ if (pattern.book.is(url)) {
 
   .container .mybox {
     max-width: none !important;
-    min-height: none !important;
+    min-width: 0px !important;
+    max-height: none !important;
+    min-height: 0px !important;
     width: auto !important;
     height: auto !important;
   }
-    `);
+  `);
   ele.forEach((ele) => {
     if (document.querySelector(ele)) {
       document.querySelector(ele).remove();
