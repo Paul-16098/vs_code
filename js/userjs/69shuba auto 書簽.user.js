@@ -3,7 +3,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.7.8
+// @version      2.7.9
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -95,6 +95,7 @@ if (pattern.book.is(url)) {
   ele = [
     "#pageheadermenu",
     "#pagefootermenu",
+    ".hide720",
     "body > div.container > div.mybox > div.top_Scroll",
     "body > div.container > div.yuedutuijian.light",
     "#tuijian",
