@@ -4,7 +4,7 @@
 // @name         Tools
 // @namespace    pl816098
 // @description  paul Tools
-// @version      1.1.4
+// @version      1.1.5
 // @match        *://*/*
 // @author       paul
 // @license      MIT
@@ -13,6 +13,18 @@
 
 const _unsafeWindow =
   typeof unsafeWindow === "undefined" ? window : unsafeWindow; //兼容 ios userscripts 的寫法
+_unsafeWindow.Tools.debug = function (str, title = "INFO", type = "log") {
+  if (
+    !(type === "log" || type === "info" || type === "error" || type === "warn")
+  ) {
+    console.warn("錯誤: type != log || info || warn || error but = " + type);
+  }
+  console[type](
+    `%c ${title}:\n`,
+    "color: white;font-size: large;font-weight: bold;background-color: black;",
+    str
+  );
+};
 function set_gm() {
   set_gm: {
     var _GM_xmlhttpRequest,
@@ -134,18 +146,6 @@ function set_gm() {
   }
 }
 
-_unsafeWindow.Tools.debug = function (str, title = "INFO", type = "log") {
-  if (
-    !(type === "log" || type === "info" || type === "error" || type === "warn")
-  ) {
-    console.warn("錯誤: type != log || info || warn || error but = " + type);
-  }
-  console[type](
-    `%c ${title}:\n`,
-    "color: white;font-size: large;font-weight: bold;background-color: black;",
-    str
-  );
-};
 /**
  * a JSDoc
  * @date 2023/12/20 - 上午11:25:47
