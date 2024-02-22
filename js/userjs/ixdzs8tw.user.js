@@ -77,7 +77,7 @@ let pattern = {
   },
 };
 
-if (pattern.book.test(url)) {
+if (pattern.book.is(url)) {
   document.querySelector("#page-id3").remove();
   document.querySelector("#page-toolbar").remove();
   document.querySelector("#page > article > section > p:nth-child(1)").remove();
@@ -89,9 +89,11 @@ transform: translateX(0px);
 background: #ffffff!important;
 }
 `);
-} else if (pattern.end.test(url)) {
+}
+if (pattern.end.is(url)) {
   // console.log("end");
   window.close();
-} else if (pattern.info.test(url)) {
+}
+if (pattern.info.test(url)) {
   document.querySelector("#intro").click();
 }
