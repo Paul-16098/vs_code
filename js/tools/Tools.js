@@ -4,7 +4,7 @@
 // @name         Tools
 // @namespace    pl816098
 // @description  paul Tools
-// @version      1.1.5
+// @version      1.1.6
 // @match        *://*/*
 // @author       paul
 // @license      MIT
@@ -13,7 +13,7 @@
 
 const _unsafeWindow =
   typeof unsafeWindow === "undefined" ? window : unsafeWindow; //兼容 ios userscripts 的寫法
-_unsafeWindow.Tools.debug = function (str, title = "INFO", type = "log") {
+_unsafeWindow.debug = function (str, title = "INFO", type = "log") {
   if (
     !(type === "log" || type === "info" || type === "error" || type === "warn")
   ) {
