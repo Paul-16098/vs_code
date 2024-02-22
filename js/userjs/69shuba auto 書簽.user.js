@@ -3,7 +3,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.8.0
+// @version      2.8.1
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -41,6 +41,7 @@ set_gm: {
     } else {
       _GM_addStyle = (cssStr) => {
         let styleEle = document.createElement("style");
+        styleEle.classList.add("_GM_addStyle");
         styleEle.innerHTML = cssStr;
         document.head.appendChild(styleEle);
         return styleEle;

@@ -4,7 +4,7 @@
 // @name         Tools
 // @namespace    pl816098
 // @description  paul Tools
-// @version      1.1.2
+// @version      1.1.3
 // @match        *://*/*
 // @author       paul
 // @license      MIT
@@ -106,8 +106,9 @@ set_gm: {
     ) {
       _GM_addStyle = GM.addStyle;
     } else {
-      _GM_addStyle = (cssStr) => {
+      _GM_addStyle = (cssStr = null) => {
         let styleEle = document.createElement("style");
+        styleEle.classList.add("_GM_addStyle");
         styleEle.innerHTML = cssStr;
         document.head.appendChild(styleEle);
         return styleEle;
