@@ -15,7 +15,7 @@
 // @downloadURL https://update.greasyfork.org/scripts/484505/ixdzs8tw.user.js
 // @updateURL https://update.greasyfork.org/scripts/484505/ixdzs8tw.meta.js
 // ==/UserScript==
-
+let ele = [];
 set_gm: {
   var _GM_xmlhttpRequest,
     _GM_registerMenuCommand,
