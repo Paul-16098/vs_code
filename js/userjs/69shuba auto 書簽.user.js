@@ -104,6 +104,11 @@ if (pattern.book.is(url)) {
     "#ad",
     "body > div.container > div > div.tools",
   ];
+  ele.forEach((ele) => {
+    if (document.querySelector(ele)) {
+      document.querySelector(ele).remove();
+    }
+  });
   document.querySelector("#a_addbookcase").click();
   let author = "";
   if (_unsafeWindow.bookinfo.author) {
@@ -145,11 +150,6 @@ if (pattern.book.is(url)) {
   }
     `);
   console.log("_GM_addStyle end");
-  ele.forEach((ele) => {
-    if (document.querySelector(ele)) {
-      document.querySelector(ele).remove();
-    }
-  });
 }
 if (pattern.info.is(url)) {
   // console.log("info");
