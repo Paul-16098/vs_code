@@ -3,7 +3,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.8.2
+// @version      2.8.2-bate-1.0.0
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -16,6 +16,7 @@
 // @grant        window.close
 // @grant        GM_addStyle
 // @grant        GM.addStyle
+// @run-at       document-body
 // @license      MIT
 // @downloadURL https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
 // @updateURL https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.meta.js
@@ -111,8 +112,8 @@ if (pattern.book.is(url)) {
   });
   document.querySelector("#a_addbookcase").click();
   let author = "";
-  if (_unsafeWindow.bookinfo.author) {
-    author = _unsafeWindow.bookinfo.author;
+  if (bookinfo.author) {
+    author = bookinfo.author;
   } else {
     author = document
       .querySelector(
@@ -133,7 +134,9 @@ if (pattern.book.is(url)) {
   let h1Element = document.createElement("h1");
   let title = document.querySelector("title").innerText.split("-")[0];
   h1Element.innerText = title;
-  // h1Element.appendChild(document.querySelector("body > div.container > div > div.tools > ul")  );
+  document.querySelector(
+    "body > div.container > div > div.yueduad1"
+  ).innerText = title;
   console.log("_GM_addStyle start");
   _GM_addStyle(`
   /** @format */
