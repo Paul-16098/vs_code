@@ -149,9 +149,13 @@ if (pattern.book.is(url)) {
     min-height: 0px !important;
     width: auto !important;
     height: auto !important;
-    margin:auto !important;
+    margin: auto !important;
   }
-    `);
+  
+  body > div.container > div > div.yueduad1 {
+    font-size: large;
+  }
+      `);
   console.log("_GM_addStyle end");
 }
 if (pattern.info.is(url)) {
