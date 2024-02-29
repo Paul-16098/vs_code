@@ -3,7 +3,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.8.2
+// @version      2.8.3
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -16,7 +16,7 @@
 // @grant        window.close
 // @grant        GM_addStyle
 // @grant        GM.addStyle
-// @run-at       document-body
+// @run-at       document-idle
 // @license      MIT
 // @downloadURL https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
 // @updateURL https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.meta.js
