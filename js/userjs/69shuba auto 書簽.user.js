@@ -102,6 +102,7 @@ if (pattern.book.is(url)) {
     "body > div.container > div.yuedutuijian.light",
     "#tuijian",
     "#ad",
+    "body > div.container > div > div.tools",
   ];
   document.querySelector("#a_addbookcase").click();
   let author = "";
@@ -124,6 +125,10 @@ if (pattern.book.is(url)) {
   aElement.style.color = "#007ead";
   spanElement.textContent = spanElement.textContent.trim().split(" ")[0];
   spanElement.appendChild(aElement);
+  let h1Element = document.createElement("h1");
+  let title = document.querySelector("title").innerText.split("-")[0];
+  h1Element.innerText = title;
+  // h1Element.appendChild(document.querySelector("body > div.container > div > div.tools > ul")  );
   console.log("_GM_addStyle start");
   _GM_addStyle(`
   /** @format */
