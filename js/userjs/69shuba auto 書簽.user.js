@@ -1,60 +1,101 @@
-/** @format */
-
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.8.3
+// @version      2.8.7
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
-// @match        https://www.69xinshu.com/txt/*/*
-// @match        https://www.69xinshu.com/book/*.htm*
-// @match        https://www.69shuba.com/book/*.htm*
 // @match        https://www.69shuba.com/txt/*/end.html
+// @match        https://www.69shuba.com/book/*.htm*
+// @match        https://www.69xinshu.com/txt/*/*
 // @match        https://www.69xinshu.com/txt/*/end.html
+// @match        https://www.69xinshu.com/book/*.htm*
+// @match        https://www.69shu.pro/txt/*/*
+// @match        https://www.69shu.pro/txt/*/end.html
+// @match        https://www.69shu.pro/book/*.htm*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=69shuba.com
 // @grant        window.close
 // @grant        GM_addStyle
 // @grant        GM.addStyle
 // @run-at       document-idle
 // @license      MIT
-// @downloadURL https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
-// @updateURL https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.meta.js
+// @downloadURL  https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
+// @updateURL    https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.meta.js
 // ==/UserScript==
 const _unsafeWindow =
   typeof unsafeWindow === "undefined" ? window : unsafeWindow; //兼容 ios userscripts 的寫法
-set_gm: {
-  var _GM_xmlhttpRequest,
-    _GM_registerMenuCommand,
-    _GM_notification,
-    _GM_addStyle,
-    _GM_openInTab,
-    _GM_info,
-    _GM_setClipboard;
-  GM_addStyle: {
-    if (typeof GM_addStyle !== "undefined") {
-      _GM_addStyle = GM_addStyle;
-    } else if (
-      typeof GM !== "undefined" &&
-      typeof GM.addStyle !== "undefined"
-    ) {
-      _GM_addStyle = GM.addStyle;
-    } else {
-      _GM_addStyle = (cssStr) => {
-        let styleEle = document.createElement("style");
-        styleEle.classList.add("_GM_addStyle");
-        styleEle.innerHTML = cssStr;
-        document.head.appendChild(styleEle);
-        return styleEle;
-      };
-    }
-  }
+
+let _GM_addStyle;
+if (typeof GM_addStyle !== "undefined") {
+  _GM_addStyle = GM_addStyle;
+} else if (typeof GM !== "undefined" && typeof GM.addStyle !== "undefined") {
+  _GM_addStyle = GM.addStyle;
+} else {
+  _GM_addStyle = (cssStr) => {
+    let styleEle = document.createElement("style");
+    styleEle.classList.add("_GM_addStyle");
+    styleEle.innerHTML = cssStr;
+    document.head.appendChild(styleEle);
+    return styleEle;
+  };
 }
+
+console.log("set func remove start");
+function remove(str, ...args) {
+  try {
+    if (typeof str === "string") {
+      console.log("str: ", str);
+      console.log(
+        "document.querySelectorAll(str): ",
+        document.querySelectorAll(str)
+      );
+      if (document.querySelector(str)) {
+        document.querySelectorAll(str).forEach((ele) => {
+          ele.remove();
+        });
+      }
+    } else if (typeof str === "object" && str.length > 0) {
+      str.forEach((str) => {
+        console.log("str: ", str);
+        console.log(
+          "document.querySelectorAll(str): ",
+          document.querySelectorAll(str)
+        );
+        if (document.querySelector(str)) {
+          document.querySelectorAll(str).forEach((ele) => {
+            ele.remove();
+          });
+        }
+      });
+    }
+    if (args && args.length > 0) {
+      args.forEach((args) => {
+        console.log("str: ", str);
+        console.log(
+          "document.querySelectorAll(str): ",
+          document.querySelectorAll(str)
+        );
+        if (document.querySelector(args)) {
+          document.querySelectorAll(args).forEach((ele) => {
+            ele.remove();
+          });
+        }
+      });
+    }
+  } catch (e) {
+    console.error(e);
+    return [false, str, args];
+  }
+  return [true, str, args];
+}
+
+console.log("set func remove end\n", remove);
+
 let url = window.location.href;
 let pattern = {
   book: {
     pattern:
-      /^(https?:\/\/)(www\.(69shuba|69xinshu)\.com)\/txt\/[0-9]*\/(?!end)[0-9]*$/gm,
+      /^(https?:\/\/)(www\.(69shuba|69xinshu|69shu)\.(com|pro))\/txt\/[0-9]*\/(?!end)[0-9]*$/gm,
     is: (url = window.location.href) => {
       if (pattern.book.pattern.test(url)) {
         return true;
@@ -65,7 +106,7 @@ let pattern = {
   },
   info: {
     pattern:
-      /^(https?:\/\/)(www\.(69shuba|69xinshu)\.com)\/book\/[0-9]*\.htm.*$/gm,
+      /^(https?:\/\/)(www\.(69shuba|69xinshu|69shu)\.(com|pro))\/book\/[0-9]*\.htm.*$/gm,
     is: (url = window.location.href) => {
       if (pattern.info.pattern.test(url)) {
         return true;
@@ -76,7 +117,7 @@ let pattern = {
   },
   end: {
     pattern:
-      /^(https?:\/\/)(www\.(69shuba|69xinshu)\.com)\/txt\/[0-9]*\/end\.html$/gm,
+      /^(https?:\/\/)(www\.(69shuba|69xinshu|69shu)\.(com|pro))\/txt\/[0-9]*\/end\.html$/gm,
     is: (url = window.location.href) => {
       // console.log(document.querySelector("div.page1 > a:nth-child(4)"));
       if (
@@ -95,24 +136,19 @@ let pattern = {
 let ele = [];
 if (pattern.book.is(url)) {
   // console.log("book");
+  console.log("set ele start\n", ele);
   ele = [
     "#pageheadermenu",
+    ".mytitle",
+    ".top_Scroll",
+    ".yuedutuijian.light",
     "#pagefootermenu",
-    ".hide720",
-    "body > div.container > div.mybox > div.top_Scroll",
-    "body > div.container > div.yuedutuijian.light",
-    "#tuijian",
-    "#ad",
-    "body > div.container > div > div.tools",
+    "body > div.container > div > div.yueduad1",
   ];
-  ele.forEach((ele) => {
-    if (document.querySelector(ele)) {
-      document.querySelector(ele).remove();
-    }
-  });
+  console.log("set ele end\n", ele);
   document.querySelector("#a_addbookcase").click();
   let author = "";
-  if (bookinfo.author) {
+  if (typeof bookinfo.author === "string") {
     author = bookinfo.author;
   } else {
     author = document
@@ -126,35 +162,47 @@ if (pattern.book.is(url)) {
     "body > div.container > div.mybox > div.txtnav > div.txtinfo.hide720 > span:nth-child(2)"
   );
   let aElement = document.createElement("a");
-  aElement.href = `https://www.69xinshu.com/modules/article/author.php?author=${author}`;
+  aElement.href = `${window.location.origin}/modules/article/author.php?author=${author}`;
   aElement.textContent = author;
   aElement.style.color = "#007ead";
   spanElement.textContent = spanElement.textContent.trim().split(" ")[0];
   spanElement.appendChild(aElement);
-  let h1Element = document.createElement("h1");
+
   let title = document.querySelector("title").innerText.split("-")[0];
-  h1Element.innerText = title;
-  document.querySelector(
+  let yueduad1 = document.querySelector(
     "body > div.container > div > div.yueduad1"
-  ).innerText = title;
+  );
+  let titleElement = document.createElement("a");
+  titleElement.appendChild(document.createTextNode(title));
+  titleElement.href = `${origin}/book/${location.href.split("/")[4]}.htm`;
+  titleElement.id = "title";
+  yueduad1.replaceWith(titleElement, yueduad1);
+
+  console.log("remove(ele) start");
+  let remove_return = remove(ele);
+  console.log("remove(ele) end\n", remove_return);
+
   console.log("_GM_addStyle start");
   _GM_addStyle(`
   /** @format */
 
-  .container,
-  .mybox {
-    max-width: none !important;
-    min-width: 0px !important;
-    max-height: none !important;
-    min-height: 0px !important;
-    width: auto !important;
-    height: auto !important;
-    margin: auto !important;
-  }
-  
-  body > div.container > div > div.yueduad1 {
-    font-size: large;
-  }
+.container,
+.mybox {
+  max-width: none !important;
+  min-width: 0px !important;
+  max-height: none !important;
+  min-height: 0px !important;
+  width: auto !important;
+  height: auto !important;
+  margin: auto !important;
+}
+
+#title {
+  font-size: large;
+  font-weight: bold;
+  color: #000;
+}
+
       `);
   console.log("_GM_addStyle end");
 }
@@ -184,6 +232,7 @@ if (pattern.end.is(url)) {
         }
         default: {
           // console.log("e: ", e);
+          break;
         }
       }
     }
