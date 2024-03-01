@@ -1,1 +1,1 @@
-taskkill /FI * /IM *
+doskey $ = $*
