@@ -11,8 +11,8 @@
 // @grant        GM_addStyle
 // @grant        window.close
 // @homepageURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/README.md
-// @downloadURL  https://update.greasyfork.org/scripts/484505/ixdzs8tw.user.js
-// @updateURL    https://update.greasyfork.org/scripts/484505/ixdzs8tw.meta.js
+// @downloadURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/ixdzs8tw.user.js
+// @updateURL    https://github.com/Paul-16098/vs_code/blob/main/js/userjs/ixdzs8tw.user.js
 // ==/UserScript==
 let ele = [];
 set_gm: {

@@ -7,10 +7,10 @@
 // @match        https://czbooks.net/n/*/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=czbooks.net
 // @grant        GM_addStyle
-// @homepageURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/README.md
 // @license      MIT
-// @downloadURL  https://update.greasyfork.org/scripts/487217/czbooksnet.user.js
-// @updateURL    https://update.greasyfork.org/scripts/487217/czbooksnet.meta.js
+// @homepageURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/README.md
+// @downloadURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/czbooksnet.user.js
+// @updateURL    https://github.com/Paul-16098/vs_code/blob/main/js/userjs/czbooksnet.user.js
 // ==/UserScript==
 
 set_GM: {
