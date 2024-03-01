@@ -19,6 +19,7 @@
 // @grant        GM.addStyle
 // @run-at       document-idle
 // @license      MIT
+// @supportURL   https://github.com/Paul-16098/vs_code/issues/
 // @homepageURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/README.md
 // @downloadURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
 // @updateURL    https://github.com/Paul-16098/vs_code/blob/main/js/userjs/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
