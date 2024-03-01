@@ -22,7 +22,7 @@
 
 自用
 
-[安裝](https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js)
+[安裝](https://github.com/Paul-16098/vs_code/blob/main/js/userjs/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js)
 
 ---
 
