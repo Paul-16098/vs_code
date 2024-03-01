@@ -1,5 +1,3 @@
-/** @format */
-
 // ==UserScript==
 // @name         ixdzs8.tw
 // @namespace    pl816098
@@ -12,8 +10,9 @@
 // @license      MIT
 // @grant        GM_addStyle
 // @grant        window.close
-// @downloadURL https://update.greasyfork.org/scripts/484505/ixdzs8tw.user.js
-// @updateURL https://update.greasyfork.org/scripts/484505/ixdzs8tw.meta.js
+// @homepageURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/README.md
+// @downloadURL  https://update.greasyfork.org/scripts/484505/ixdzs8tw.user.js
+// @updateURL    https://update.greasyfork.org/scripts/484505/ixdzs8tw.meta.js
 // ==/UserScript==
 let ele = [];
 set_gm: {
