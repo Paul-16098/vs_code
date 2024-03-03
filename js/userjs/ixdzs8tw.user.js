@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         ixdzs8.tw
 // @namespace    pl816098
-// @version      1.2.5
+// @version      1.2.6
 // @description  自用
 // @author       paul
-// @match        https://ixdzs8.*/read/*/*.html
-// @match        https://ixdzs8.*/read/*
+// @include      /^(https?:\/\/)(ixdzs8\.[a-zA-Z]{1,3}\/read\/[0-9]+\/(?!end)p[0-9]*\.html)$/
+// @include      /^(https?:\/\/)(ixdzs8\.[a-zA-Z]{1,3}\/read\/[0-9]+\/)$/
+// @include      /^(https?:\/\/)(ixdzs8\.[a-zA-Z]{1,3}\/read\/[0-9]+\/end\.html)$/
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=ixdzs8.tw
 // @license      MIT
 // @grant        GM_addStyle
@@ -140,7 +141,7 @@ let next_page_url = document.querySelector(
 let pattern = {
   book: {
     pattern:
-      /^(https?:\/\/)(ixdzs8\.[a-zA-Z]{1,3}\/read\/[0-9]*\/(?!end)p[0-9]*\.html)$/gm,
+      /^(https?:\/\/)(ixdzs8\.[a-zA-Z]{1,3}\/read\/[0-9]+\/(?!end)p[0-9]*\.html)$/gm,
     is: (url) => {
       if (pattern.book.pattern.test(url)) {
         return true;
@@ -150,7 +151,7 @@ let pattern = {
     },
   },
   info: {
-    pattern: /^(https?:\/\/)(ixdzs8\.[a-zA-Z]{1,3}\/read\/[0-9]*\/)$/gm,
+    pattern: /^(https?:\/\/)(ixdzs8\.[a-zA-Z]{1,3}\/read\/[0-9]+\/)$/gm,
     is: (url) => {
       if (pattern.info.pattern.test(url)) {
         return true;
@@ -161,7 +162,7 @@ let pattern = {
   },
   end: {
     pattern:
-      /^(https?:\/\/)(ixdzs8\.[a-zA-Z]{1,3}\/read\/[0-9]*\/end\.html)$/gm,
+      /^(https?:\/\/)(ixdzs8\.[a-zA-Z]{1,3}\/read\/[0-9]+\/end\.html)$/gm,
     is: (url) => {
       if (pattern.end.pattern.test(url)) {
         return true;
