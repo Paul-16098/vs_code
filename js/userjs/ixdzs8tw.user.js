@@ -163,9 +163,7 @@ let pattern = {
     pattern:
       /^(https?:\/\/)(ixdzs8\.[a-zA-Z]{1,3}\/read\/[0-9]*\/end\.html)$/gm,
     is: (url) => {
-      if (
-        pattern.end.pattern.test(url) //|| pattern.end.pattern.test(next_page_url)
-      ) {
+      if (pattern.end.pattern.test(url)) {
         return true;
       } else {
         return false;
