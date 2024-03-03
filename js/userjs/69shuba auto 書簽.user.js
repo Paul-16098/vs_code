@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.8.13
+// @version      2.8.14
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
-// @include      /^(https?:\/\/)(www\.(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]*\/(?!end)[0-9]*$/
-// @include      /^(https?:\/\/)(www\.(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/book\/[0-9]*\.htm.*$/
-// @include      /^(https?:\/\/)(www\.(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]*\/end\.html$/
+// @include      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]*\/(?!end)[0-9]*$/
+// @include      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/book\/[0-9]*\.htm.*$/
+// @include      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]*\/end\.html$/
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=69shuba.com
 // @grant        window.close
 // @grant        GM_addStyle
@@ -92,7 +92,7 @@ let url = window.location.href;
 let pattern = {
   book: {
     pattern:
-      /^(https?:\/\/)(www\.(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]*\/(?!end)[0-9]*$/gm,
+      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]+\/(?!end)[0-9]+$/gm,
     is: (url = window.location.href) => {
       if (pattern.book.pattern.test(url)) {
         return true;
@@ -103,7 +103,7 @@ let pattern = {
   },
   info: {
     pattern:
-      /^(https?:\/\/)(www\.(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/book\/[0-9]*\.htm.*$/gm,
+      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/book\/[0-9]*\.htm.*$/gm,
     is: (url = window.location.href) => {
       if (pattern.info.pattern.test(url)) {
         return true;
@@ -114,7 +114,7 @@ let pattern = {
   },
   end: {
     pattern:
-      /^(https?:\/\/)(www\.(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]*\/end\.html$/gm,
+      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]*\/end\.html$/gm,
     is: (url = window.location.href) => {
       // console.log(document.querySelector("div.page1 > a:nth-child(4)"));
       if (
