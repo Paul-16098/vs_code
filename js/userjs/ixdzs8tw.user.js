@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ixdzs8.tw
 // @namespace    pl816098
-// @version      1.2.4
+// @version      1.2.5
 // @description  自用
 // @author       paul
 // @match        https://ixdzs8.*/read/*/*.html
@@ -134,6 +134,9 @@ set_gm: {
   }
 }
 let url = window.location.href;
+let next_page_url = document.querySelector(
+  "body > div.page-d.page-turn > div > a.chapter-paging.chapter-next"
+).href;
 let pattern = {
   book: {
     pattern:
@@ -157,9 +160,12 @@ let pattern = {
     },
   },
   end: {
-    pattern: /^(https?:\/\/)(ixdzs8\.[a-zA-Z]{1,3}\/read\/[0-9]*\/end\.html)$/gm,
+    pattern:
+      /^(https?:\/\/)(ixdzs8\.[a-zA-Z]{1,3}\/read\/[0-9]*\/end\.html)$/gm,
     is: (url) => {
-      if (pattern.end.pattern.test(url)) {
+      if (
+        pattern.end.pattern.test(url) //|| pattern.end.pattern.test(next_page_url)
+      ) {
         return true;
       } else {
         return false;
@@ -188,9 +194,28 @@ background: #ffffff!important;
 }
 `);
 }
-if (pattern.end.is(url)) {
-  // console.log("end");
-  window.close();
+if (pattern.end.is(url) || pattern.end.is(next_page_url)) {
+  // console.log("end")
+  if (pattern.end.is(next_page_url)) {
+    document.addEventListener("keydown", function (e) {
+      if (!e.repeat) {
+        switch (true) {
+          case e.key === "ArrowRight": {
+            // console.log('(e.key === "ArrowRight") === true');
+            window.close();
+            break;
+          }
+          default: {
+            // console.log("e: ", e);
+            break;
+          }
+        }
+      }
+    });
+  }
+  if (pattern.end.is(url)) {
+    window.close();
+  }
 }
 if (pattern.info.test(url)) {
   document.querySelector("#intro").click();

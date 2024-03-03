@@ -92,7 +92,6 @@ function remove(str, ...args) {
   }
   return [true, str, args];
 }
-
 console.log("set func remove end\n", remove);
 
 let url = window.location.href;
