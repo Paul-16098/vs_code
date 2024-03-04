@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.8.17
+// @version      2.8.18
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @include      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]+\/(?!end)[0-9]+$/
@@ -18,6 +18,8 @@
 // @downloadURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
 // @updateURL    https://github.com/Paul-16098/vs_code/blob/main/js/userjs/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
 // ==/UserScript==
+const debug = false;
+
 const _unsafeWindow =
   typeof unsafeWindow === "undefined" ? window : unsafeWindow; //兼容 ios userscripts 的寫法
 
@@ -42,11 +44,14 @@ console.log("set func remove start");
 function remove(str, ...args) {
   try {
     if (typeof str === "string") {
-      console.log("str: ", str);
-      console.log(
-        "document.querySelectorAll(str): ",
-        document.querySelectorAll(str)
-      );
+      if (debug) {
+        console.log("str: ", str);
+        console.log(
+          "document.querySelectorAll(str): ",
+          document.querySelectorAll(str)
+        );
+      } else {
+      }
       if (document.querySelector(str)) {
         document.querySelectorAll(str).forEach((ele) => {
           ele.remove();
@@ -139,8 +144,12 @@ let pattern = {
 };
 let ele = [];
 if (pattern.book.is(url)) {
-  // console.log("book");
-  console.log("_GM_addStyle start");
+  if (debug) {
+    console.log("book");
+  }
+  if (debug) {
+    console.log("_GM_addStyle start");
+  }
   _GM_addStyle(`
   /** @format */
 
@@ -162,9 +171,13 @@ if (pattern.book.is(url)) {
 }
 
       `);
-  console.log("_GM_addStyle end");
+  if (debug) {
+    console.log("_GM_addStyle end");
+  }
 
-  console.log("set ele start\n", ele);
+  if (debug) {
+    console.log("set ele start\n", ele);
+  }
   ele = [
     "#pageheadermenu",
     ".mytitle",
@@ -173,10 +186,16 @@ if (pattern.book.is(url)) {
     "#pagefootermenu",
     "body > div.container > div > div.yueduad1",
   ];
-  console.log("remove(ele) start");
-  let remove_return = remove(ele);
-  console.log("remove(ele) end\n", remove_return);
-  console.log("set ele end\n", ele);
+  if (debug) {
+    console.log("set ele end\n", ele);
+  }
+  if (debug) {
+    console.log("remove(ele) start");
+    let remove_return = remove(ele);
+    console.log("remove(ele) end\n", remove_return);
+  } else {
+    remove(ele);
+  }
   document.querySelector("#a_addbookcase").click();
   let author = "";
   if (typeof bookinfo.author === "string") {
@@ -215,7 +234,9 @@ if (pattern.book.is(url)) {
   yueduad1.replaceWith(titleElement);
 }
 if (pattern.info.is(url)) {
-  // console.log("info");
+  if (debug) {
+    console.log("info");
+  }
   document
     .querySelector(
       "body > div.container > ul > li.col-8 > div:nth-child(2) > ul > li:nth-child(2) > a"
@@ -229,17 +250,23 @@ if (pattern.info.is(url)) {
   ).style.color = "#007ead";
 }
 if (pattern.end.is(url)) {
-  // console.log("end");
+  if (debug) {
+    console.log("end");
+  }
   document.addEventListener("keydown", function (e) {
     if (!e.repeat) {
       switch (true) {
         case e.key === "ArrowRight": {
-          // console.log('(e.key === "ArrowRight") === true');
+          if (debug) {
+            console.log('(e.key === "ArrowRight") === true');
+          }
           window.close();
           break;
         }
         default: {
-          // console.log("e: ", e);
+          if (debug) {
+            console.log("e: ", e);
+          }
           break;
         }
       }
