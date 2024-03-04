@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.8.18
+// @version      2.8.18-bate(1.0)
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @include      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]+\/(?!end)[0-9]+$/
@@ -19,6 +19,9 @@
 // @downloadURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
 // @updateURL    https://github.com/Paul-16098/vs_code/blob/main/js/userjs/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
 // ==/UserScript==
+if (GM_getValue("debug") === undefined) {
+  GM_setValue("debug", true);
+}
 const debug = GM_getValue("debug", false);
 
 const _unsafeWindow =
@@ -44,53 +47,29 @@ if (typeof zh_tran === "function") {
 }
 
 console.log("set func remove start");
-function remove(str, ...args) {
+function remove(...args) {
   try {
-    if (typeof str === "string") {
-      if (debug) {
-        console.log("str: ", str);
-        console.log(
-          "document.querySelectorAll(str): ",
-          document.querySelectorAll(str)
-        );
-      } else {
-      }
-      if (document.querySelector(str)) {
-        document.querySelectorAll(str).forEach((ele) => {
-          ele.remove();
-        });
-      }
-    } else if (typeof str === "object" && str.length > 0) {
-      str.forEach((str) => {
-        console.log("str: ", str);
-        console.log(
-          "document.querySelectorAll(str): ",
-          document.querySelectorAll(str)
-        );
-        if (document.querySelector(str)) {
-          document.querySelectorAll(str).forEach((ele) => {
-            ele.remove();
-          });
-        }
-      });
-    }
     if (args && args.length > 0) {
       args.forEach((args) => {
-        console.log("str: ", str);
-        console.log(
-          "document.querySelectorAll(str): ",
-          document.querySelectorAll(str)
-        );
+        if (debug) {
+          console.log("str: ", str);
+          console.log(
+            "document.querySelectorAll(str): ",
+            document.querySelectorAll(str)
+          );
+        }
         if (document.querySelector(args)) {
           document.querySelectorAll(args).forEach((ele) => {
             ele.remove();
           });
         }
       });
+    } else {
+      throw new Error("fn remove error, args is not a array");
     }
   } catch (e) {
     console.error(e);
-    return [false, str, args];
+    return [false, str, args, e];
   }
   return [true, str, args];
 }
