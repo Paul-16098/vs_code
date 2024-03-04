@@ -28,8 +28,6 @@
 // @downloadURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
 // @updateURL    https://github.com/Paul-16098/vs_code/blob/main/js/userjs/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
 // ==/UserScript==
-/* ==UserConfig==
- ==/UserConfig== */
 if (GM_getValue("debug", undefined) === undefined) {
   GM_setValue("debug", false);
 }
