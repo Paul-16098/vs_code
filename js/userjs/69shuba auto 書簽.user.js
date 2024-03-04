@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.8.14
+// @version      2.8.15
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @include      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]*\/(?!end)[0-9]*$/
@@ -90,6 +90,13 @@ console.log("set func remove end\n", remove);
 
 let url = window.location.href;
 let pattern = {
+  is69shux: (host = window.location.host) => {
+    if (host === "69shux.com") {
+      return true;
+    } else {
+      return false;
+    }
+  },
   book: {
     pattern:
       /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]+\/(?!end)[0-9]+$/gm,
@@ -133,6 +140,30 @@ let pattern = {
 let ele = [];
 if (pattern.book.is(url)) {
   // console.log("book");
+
+  console.log("_GM_addStyle start");
+  _GM_addStyle(`
+  /** @format */
+
+.container,
+.mybox {
+  max-width: none !important;
+  min-width: 0px !important;
+  max-height: none !important;
+  min-height: 0px !important;
+  width: auto !important;
+  height: auto !important;
+  margin: auto !important;
+}
+
+#title {
+  font-size: large;
+  font-weight: bold;
+  color: #000;
+}
+
+      `);
+  console.log("_GM_addStyle end");
   console.log("set ele start\n", ele);
   ele = [
     "#pageheadermenu",
@@ -178,30 +209,6 @@ if (pattern.book.is(url)) {
   console.log("remove(ele) start");
   let remove_return = remove(ele);
   console.log("remove(ele) end\n", remove_return);
-
-  console.log("_GM_addStyle start");
-  _GM_addStyle(`
-  /** @format */
-
-.container,
-.mybox {
-  max-width: none !important;
-  min-width: 0px !important;
-  max-height: none !important;
-  min-height: 0px !important;
-  width: auto !important;
-  height: auto !important;
-  margin: auto !important;
-}
-
-#title {
-  font-size: large;
-  font-weight: bold;
-  color: #000;
-}
-
-      `);
-  console.log("_GM_addStyle end");
 }
 if (pattern.info.is(url)) {
   // console.log("info");
