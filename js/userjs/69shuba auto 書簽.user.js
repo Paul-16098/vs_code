@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.8.16
+// @version      2.8.17
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
-// @include      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]*\/(?!end)[0-9]*$/
-// @include      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/book\/[0-9]*\.htm.*$/
-// @include      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]*\/end\.html$/
+// @include      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]+\/(?!end)[0-9]+$/
+// @include      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/book\/[0-9]+\.htm.*$/
+// @include      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]+\/end\.html$/
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=69shuba.com
 // @grant        window.close
 // @grant        GM_addStyle
@@ -110,7 +110,7 @@ let pattern = {
   },
   info: {
     pattern:
-      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/book\/[0-9]*\.htm.*$/gm,
+      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/book\/[0-9]+\.htm.*$/gm,
     is: (url = window.location.href) => {
       if (pattern.info.pattern.test(url)) {
         return true;
@@ -121,7 +121,7 @@ let pattern = {
   },
   end: {
     pattern:
-      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]*\/end\.html$/gm,
+      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]+\/end\.html$/gm,
     is: (url = window.location.href) => {
       // console.log(document.querySelector("div.page1 > a:nth-child(4)"));
       if (
@@ -200,14 +200,19 @@ if (pattern.book.is(url)) {
   spanElement.appendChild(aElement);
 
   let title = document.querySelector("title").innerText.split("-")[0];
-  let yueduad1 = document.querySelector(
-    "body > div.container > div > div.yueduad1"
-  );
+  let yueduad1;
+  if (pattern.is69shux(window.location.host) === false) {
+    yueduad1 = document.querySelector(
+      "body > div.container > div > div.yueduad1"
+    );
+  } else {
+    yueduad1 = document.querySelector("#container > div > div.tools");
+  }
   let titleElement = document.createElement("a");
   titleElement.appendChild(document.createTextNode(title));
   titleElement.href = `${origin}/book/${location.href.split("/")[4]}.htm`;
   titleElement.id = "title";
-  yueduad1.replaceWith(titleElement, yueduad1);
+  yueduad1.replaceWith(titleElement);
 }
 if (pattern.info.is(url)) {
   // console.log("info");
