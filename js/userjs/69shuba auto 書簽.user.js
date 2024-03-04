@@ -1,12 +1,21 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.8.19-bate(1.1)
+// @version      2.8.19-bate(1.2)
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
-// @include      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]+\/(?!end)[0-9]+$/
-// @include      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/book\/[0-9]+\.htm.*$/
-// @include      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]+\/end\.html$/
+// @match        https://www.69shuba.com/txt/*/*
+// @match        https://www.69shuba.com/txt/*/end.html
+// @match        https://www.69shuba.com/book/*.htm*
+// @match        https://www.69xinshu.com/txt/*/*
+// @match        https://www.69xinshu.com/txt/*/end.html
+// @match        https://www.69xinshu.com/book/*.htm*
+// @match        https://www.69shu.pro/txt/*/*
+// @match        https://www.69shu.pro/txt/*/end.html
+// @match        https://www.69shu.pro/book/*.htm*
+// @match        https://69shux.com/txt/*/*
+// @match        https://69shux.com/txt/*/end.html
+// @match        https://69shux.com/book/*.htm*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=69shuba.com
 // @grant        window.close
 // @grant        GM_addStyle
