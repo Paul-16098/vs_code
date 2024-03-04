@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.8.15
+// @version      2.8.16
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @include      /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]*\/(?!end)[0-9]*$/
@@ -140,7 +140,6 @@ let pattern = {
 let ele = [];
 if (pattern.book.is(url)) {
   // console.log("book");
-
   console.log("_GM_addStyle start");
   _GM_addStyle(`
   /** @format */
@@ -164,6 +163,7 @@ if (pattern.book.is(url)) {
 
       `);
   console.log("_GM_addStyle end");
+
   console.log("set ele start\n", ele);
   ele = [
     "#pageheadermenu",
@@ -173,6 +173,9 @@ if (pattern.book.is(url)) {
     "#pagefootermenu",
     "body > div.container > div > div.yueduad1",
   ];
+  console.log("remove(ele) start");
+  let remove_return = remove(ele);
+  console.log("remove(ele) end\n", remove_return);
   console.log("set ele end\n", ele);
   document.querySelector("#a_addbookcase").click();
   let author = "";
@@ -205,10 +208,6 @@ if (pattern.book.is(url)) {
   titleElement.href = `${origin}/book/${location.href.split("/")[4]}.htm`;
   titleElement.id = "title";
   yueduad1.replaceWith(titleElement, yueduad1);
-
-  console.log("remove(ele) start");
-  let remove_return = remove(ele);
-  console.log("remove(ele) end\n", remove_return);
 }
 if (pattern.info.is(url)) {
   // console.log("info");
