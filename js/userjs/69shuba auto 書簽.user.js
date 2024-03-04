@@ -20,9 +20,13 @@
 // @updateURL    https://github.com/Paul-16098/vs_code/blob/main/js/userjs/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
 // ==/UserScript==
 if (GM_getValue("debug") === undefined) {
-  GM_setValue("debug", true);
+  GM_setValue("debug", false);
+}
+if (GM_getValue("debug") === undefined) {
+  GM_setValue("cofg", {});
 }
 const debug = GM_getValue("debug", false);
+const cofg = GM_getValue("cofg", {});
 
 const _unsafeWindow =
   typeof unsafeWindow === "undefined" ? window : unsafeWindow; //兼容 ios userscripts 的寫法
