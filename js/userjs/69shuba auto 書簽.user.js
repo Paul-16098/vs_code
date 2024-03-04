@@ -10,7 +10,8 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=69shuba.com
 // @grant        window.close
 // @grant        GM_addStyle
-// @grant        GM.addStyle
+// @grant        GM_setValue
+// @grant        GM_getValue
 // @run-at       document-idle
 // @license      MIT
 // @supportURL   https://github.com/Paul-16098/vs_code/issues/
@@ -18,7 +19,7 @@
 // @downloadURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
 // @updateURL    https://github.com/Paul-16098/vs_code/blob/main/js/userjs/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
 // ==/UserScript==
-const debug = false;
+const debug = GM_getValue("debug", false);
 
 const _unsafeWindow =
   typeof unsafeWindow === "undefined" ? window : unsafeWindow; //兼容 ios userscripts 的寫法
@@ -38,7 +39,9 @@ if (typeof GM_addStyle !== "undefined") {
   };
 }
 
-zh_tran("t");
+if (typeof zh_tran === "function") {
+  zh_tran("t");
+}
 
 console.log("set func remove start");
 function remove(str, ...args) {
