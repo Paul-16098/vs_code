@@ -1,19 +1,18 @@
 // ==UserScript==
 // @name         ixdzs8.tw
 // @namespace    pl816098
-// @version      1.2.6
+// @version      1.2.8
 // @description  自用
 // @author       paul
-// @include      /^(https?:\/\/)(ixdzs8\.[a-zA-Z]{1,3}\/read\/[0-9]+\/(?!end)p[0-9]*\.html)$/
-// @include      /^(https?:\/\/)(ixdzs8\.[a-zA-Z]{1,3}\/read\/[0-9]+\/)$/
-// @include      /^(https?:\/\/)(ixdzs8\.[a-zA-Z]{1,3}\/read\/[0-9]+\/end\.html)$/
+// @match        https://ixdzs8.com/read/*/*.html
+// @match        https://ixdzs8.com/read/*/
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=ixdzs8.tw
 // @license      MIT
 // @grant        GM_addStyle
 // @grant        window.close
 // @homepageURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/README.md
-// @downloadURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/ixdzs8tw.user.js
-// @updateURL    https://github.com/Paul-16098/vs_code/blob/main/js/userjs/ixdzs8tw.user.js
+// @downloadURL  https://update.greasyfork.org/scripts/484505/ixdzs8tw.user.js
+// @updateURL    https://update.greasyfork.org/scripts/484505/ixdzs8tw.meta.js
 // ==/UserScript==
 let ele = [];
 set_gm: {
