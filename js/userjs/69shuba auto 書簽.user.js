@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      3.0.0
+// @version      3.0.2
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -40,7 +40,6 @@ config:
     description: debug
     type: checkbox
     default: false
-
  ==/UserConfig== */
 
 const debug = GM_getValue("config.debug", false);
@@ -78,8 +77,8 @@ function remove(...args) {
         if (debug) {
           console.log("args: ", args);
           console.log(
-            "document.querySelectorAll(str): ",
-            document.querySelectorAll(str)
+            "document.querySelectorAll(args): ",
+            document.querySelectorAll(args)
           );
         }
         if (document.querySelector(args)) {
@@ -284,6 +283,9 @@ if (pattern.end.is(url)) {
   }
 }
 if (pattern.next_is_end.is()) {
+  if (debug) {
+    console.log("next_is_end");
+  }
   document.addEventListener("keydown", function (e) {
     if (!e.repeat) {
       switch (true) {
