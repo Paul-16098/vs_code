@@ -1,53 +1,6 @@
 config:
-  configA: # 鍵值為group.config,例如本鍵為:config.configA
-    title: 配置A # 配置的標題
-    description: 這是一個文本類型的配置 # 配置的描述內容
-    type: text # 選項類型,如果不填寫會根據數據自動識別
-    default: 默認值 # 配置的默認值
-    min: 2 # 文本最短2個字符
-    max: 18 # 文本最長18個字符
-    password: true # 設置為密碼
-  configB:
-    title: 配置B
-    description: 這是一個選擇框的配置
+  is_close:
+    title: 再結束頁時是否自動關閉
+    description: 再結束頁(https://www.69shu.pro/txt/*/end.html)時是否自動關閉
     type: checkbox
     default: true
-  configC:
-    title: 配置C
-    description: 這是一個列表選擇的配置
-    type: select
-    default: 1
-    values: [1, 2, 3, 4, 5]
-  configD:
-    title: 配置D
-    description: 這是一個動態列表選擇的配置
-    type: select
-    bind: $cookies # 動態顯示綁定的values,值是以$開頭的key,value需要是一個數組
-  configE:
-    title: 配置E
-    description: 這是一個多選列表的配置
-    type: mult-select
-    default: [1]
-    values: [1, 2, 3, 4, 5]
-  configF:
-    title: 配置F
-    description: 這是一個動態多選列表的配置
-    type: mult-select
-    bind: $cookies
-  configG:
-    title: 配置G
-    description: 這是一個數字的配置
-    type: number
-    default: 1
-    min: 10 # 最小值
-    max: 16 # 最大值
-    unit: 分 # 表示單位
-  configH:
-    title: 配置H
-    description: 這是一個長文本類型的配置
-    type: textarea
-    default: 默認值
-  configX:
-    title: 配置X
-    description: 這是一個文本類型的配置
-    default: 默認值

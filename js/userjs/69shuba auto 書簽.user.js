@@ -28,6 +28,16 @@
 // @downloadURL  https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
 // @updateURL    https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.meta.js
 // ==/UserScript==
+/* ==UserConfig==
+config:
+  is_close:
+    title: 再結束頁時是否自動關閉
+    description: 再結束頁(https://www.69shu.pro/txt/*\/end.html)時是否自動關閉
+    type: checkbox
+    default: true
+
+ ==/UserConfig== */
+
 if (GM_getValue("debug", undefined) === undefined) {
   GM_setValue("debug", false);
 }
@@ -61,7 +71,7 @@ function remove(...args) {
     if (args && args.length > 0) {
       args.forEach((args) => {
         if (debug) {
-          console.log("str: ", str);
+          console.log("args: ", args);
           console.log(
             "document.querySelectorAll(str): ",
             document.querySelectorAll(str)
@@ -74,7 +84,9 @@ function remove(...args) {
         }
       });
     } else {
-      throw new Error("fn remove error, args is not a array");
+      throw new Error(
+        "fn remove error, args is not a array or args.length =< 0"
+      );
     }
   } catch (e) {
     console.error(e);
@@ -120,12 +132,16 @@ let pattern = {
       /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]+\/end\.html$/gm,
     is: (url = window.location.href) => {
       // console.log(document.querySelector("div.page1 > a:nth-child(4)"));
-      if (
-        pattern.end.pattern.test(
-          document.querySelector("div.page1 > a:nth-child(4)")
-        ) ||
-        pattern.end.pattern.test(url)
-      ) {
+      if (pattern.end.pattern.test(url)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+  next_is_end: {
+    is: (url = document.querySelector("div.page1 > a:nth-child(4)").href) => {
+      if (pattern.end.pattern.test(url)) {
         return true;
       } else {
         return false;
@@ -256,6 +272,11 @@ if (pattern.end.is(url)) {
   if (debug) {
     console.log("end");
   }
+  if (GM_getValue(is_close, true) === true) {
+    window.close();
+  }
+}
+if (pattern.next_is_end.is()) {
   document.addEventListener("keydown", function (e) {
     if (!e.repeat) {
       switch (true) {
@@ -263,7 +284,9 @@ if (pattern.end.is(url)) {
           if (debug) {
             console.log('(e.key === "ArrowRight") === true');
           }
-          window.close();
+          if (GM_getValue(is_close, true) === true) {
+            window.close();
+          }
           break;
         }
         default: {
