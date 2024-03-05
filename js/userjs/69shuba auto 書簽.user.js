@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.8.20-bate(1.1)
+// @version      2.8.20-bate(1.2)
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -29,7 +29,6 @@
 // @updateURL    https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.meta.js
 // ==/UserScript==
 /* ==UserConfig==
-config:
 config:
   is_close:
     title: 再結束頁時是否自動關閉
