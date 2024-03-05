@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.8.20-bate(1.3)
+// @version      2.8.20-bate(1.4)
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -97,9 +97,9 @@ function remove(...args) {
     }
   } catch (e) {
     console.error(e);
-    return [false, str, args, e];
+    return [false, args, e];
   }
-  return [true, str, args];
+  return [true, args];
 }
 if (debug) {
   console.log("set func remove end\n", remove);
