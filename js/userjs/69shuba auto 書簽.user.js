@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.8.19-bate(1.2)
+// @version      2.8.19-bate(1.3)
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -210,7 +210,12 @@ if (pattern.book.is(url)) {
   spanElement.textContent = spanElement.textContent.trim().split(" ")[0];
   spanElement.appendChild(aElement);
 
-  let title = document.querySelector("title").innerText.split("-")[0];
+  let title;
+  if (typeof bookinfo.articlename === "string") {
+    title = bookinfo.articlename;
+  } else {
+    title = document.querySelector("title").innerText.split("-")[0];
+  }
   let yueduad1;
   if (pattern.is69shux(window.location.host) === false) {
     yueduad1 = document.querySelector(
@@ -221,7 +226,13 @@ if (pattern.book.is(url)) {
   }
   let titleElement = document.createElement("a");
   titleElement.appendChild(document.createTextNode(title));
-  titleElement.href = `${origin}/book/${location.href.split("/")[4]}.htm`;
+  let articleid;
+  if (typeof bookinfo.articleid === "string") {
+    articleid = bookinfo.articleid;
+  } else {
+    articleid = location.href.split("/")[4];
+  }
+  titleElement.href = `${origin}/book/${articleid}.htm`;
   titleElement.id = "title";
   yueduad1.replaceWith(titleElement);
 }
