@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      2.8.20-bate(1.4)
+// @version      2.8.20
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -21,8 +21,6 @@
 // @grant        GM_addStyle
 // @grant        GM_setValue
 // @grant        GM_getValue
-// @grant        CAT_userConfig
-// @grant        GM_registerMenuCommand
 // @run-at       document-idle
 // @license      MIT
 // @supportURL   https://github.com/Paul-16098/vs_code/issues/
@@ -64,7 +62,7 @@ if (typeof GM_addStyle !== "undefined") {
     return styleEle;
   };
 }
-GM_registerMenuCommand("Config", CAT_userConfig);
+// GM_registerMenuCommand("Config", CAT_userConfig);
 
 if (typeof zh_tran === "function") {
   zh_tran("t"); // 網站原有的函數
