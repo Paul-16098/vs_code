@@ -30,18 +30,21 @@
 // ==/UserScript==
 /* ==UserConfig==
 config:
+config:
   is_close:
     title: 再結束頁時是否自動關閉
     description: 再結束頁(https://www.69shu.pro/txt/*\/end.html)時是否自動關閉
     type: checkbox
     default: true
+  debug:
+    title: debug
+    description: debug
+    type: checkbox
+    default: false
 
  ==/UserConfig== */
 
-if (GM_getValue("debug", undefined) === undefined) {
-  GM_setValue("debug", false);
-}
-const debug = GM_getValue("debug", false);
+const debug = GM_getValue("config.debug", false);
 
 const _unsafeWindow =
   typeof unsafeWindow === "undefined" ? window : unsafeWindow; //兼容 ios userscripts 的寫法

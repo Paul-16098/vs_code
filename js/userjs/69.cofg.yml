@@ -1,6 +1,11 @@
 config:
   is_close:
     title: 再結束頁時是否自動關閉
-    description: 再結束頁(https://www.69shu.pro/txt/*/end.html)時是否自動關閉
+    description: 再結束頁(https://www.69shu.pro/txt/*\/end.html)時是否自動關閉
     type: checkbox
     default: true
+  debug:
+    title: debug
+    description: debug
+    type: checkbox
+    default: false
