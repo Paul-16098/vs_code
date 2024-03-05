@@ -28,6 +28,7 @@
 // @downloadURL  https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js
 // @updateURL    https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.meta.js
 // ==/UserScript==
+
 /* ==UserConfig==
 config:
   is_close:
