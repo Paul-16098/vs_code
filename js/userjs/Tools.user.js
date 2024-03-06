@@ -147,6 +147,7 @@ _unsafeWindow.set_gm = () => {
 };
 
 /**
+ * https://scriptcat.org/zh-TW/script-show-page/637/
  * ajaxHooker.hook
 核心方法，通过一个回调函数进行劫持，每次请求发生时自动调用回调函数。可以将所有劫持放在同一回调函数中，也可以多次调用hook方法。示例：
 
