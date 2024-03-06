@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      3.0.4
+// @version      3.0.5
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -199,6 +199,7 @@ if (pattern.book.is(url)) {
     ".yuedutuijian.light",
     "#pagefootermenu",
     "body > div.container > div > div.yueduad1",
+    "#goTopBtn",
   ];
   if (debug) {
     console.log("set ele end\n", ele);
