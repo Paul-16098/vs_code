@@ -2,7 +2,7 @@
 // @name         Tools
 // @namespace    pl816098
 // @description  paul Tools
-// @version      2.1.1
+// @version      2.2.0
 // @match        *://*/*
 // @author       paul
 // @license      MIT
@@ -11,6 +11,15 @@
 // @run-at       document-start
 // @grant        unsafeWindow
 // ==/UserScript==
+
+/* ==UserConfig==
+公開接口:
+  ajaxHooker:
+    title: 公開ajaxHooker接口
+    description: 公開ajaxHooker接口
+    type: checkbox
+    default: true
+==/UserConfig== */
 
 const _unsafeWindow =
   typeof unsafeWindow === "undefined" ? window : unsafeWindow; //兼容 ios userscripts 的寫法
