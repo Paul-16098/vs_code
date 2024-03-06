@@ -28,9 +28,9 @@ _unsafeWindow.debug = (str, title = "INFO", type = "log") => {
   );
 };
 
-/**
- * https://scriptcat.org/zh-TW/script-show-page/637/
- * ajaxHooker.hook
+/*
+https://scriptcat.org/zh-TW/script-show-page/637/
+  ajaxHooker.hook
 核心方法，通过一个回调函数进行劫持，每次请求发生时自动调用回调函数。可以将所有劫持放在同一回调函数中，也可以多次调用hook方法。示例：
 
 ajaxHooker.hook(request => {
@@ -104,7 +104,7 @@ ajaxHooker.unhook
 将xhr和fetch恢复至劫持前的状态，调用此方法后，hook方法不再生效。示例：
 
 ajaxHooker.unhook();
- * */
+*/
 if (ajaxHooker_on) {
   _unsafeWindow.ajaxHooker = ajaxHooker;
 }
