@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      3.1.2
+// @version      3.1.3
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -155,7 +155,13 @@ let pattern = {
     },
   },
   next_is_end: {
-    is: (url = document.querySelector("div.page1 > a:nth-child(4)").href) => {
+    is: (url) => {
+      if (
+        url === undefined &&
+        document.querySelector("div.page1 > a:nth-child(4)") !== undefined
+      ) {
+        url;
+      }
       if (pattern.end.pattern.test(url)) {
         return true;
       } else {
