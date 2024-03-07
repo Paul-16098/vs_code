@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      3.1.1
+// @version      3.1.2
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -51,6 +51,7 @@ debug:
  ==/UserConfig== */
 
 const debug = GM_getValue("debug.debug_log", false);
+const is_close = GM_getValue("config.is_close", true);
 
 const _unsafeWindow =
   typeof unsafeWindow === "undefined" ? window : unsafeWindow; //兼容 ios userscripts 的寫法
@@ -292,7 +293,7 @@ if (pattern.end.is(url)) {
   if (debug) {
     console.log("end");
   }
-  if (GM_getValue(is_close, true) === true) {
+  if (is_close) {
     window.close();
   }
 }
@@ -307,7 +308,7 @@ if (pattern.next_is_end.is()) {
           if (debug) {
             console.log('(e.key === "ArrowRight") === true');
           }
-          if (GM_getValue(is_close, true) === true) {
+          if (is_close) {
             window.close();
           }
           break;
