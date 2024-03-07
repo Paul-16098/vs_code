@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      3.1.0
+// @version      3.1.1
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -19,8 +19,8 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=69shuba.com
 // @grant        window.close
 // @grant        GM_addStyle
-// @grant        GM_setValue
 // @grant        GM_getValue
+// @grant        unsafeWindow
 // @run-at       document-idle
 // @license      MIT
 // @supportURL   https://github.com/Paul-16098/vs_code/issues/
@@ -166,7 +166,7 @@ let pattern = {
 let ele = [];
 if (pattern.book.is(url)) {
   if (GM_getValue("config.is_hook_alert", true)) {
-    alert = (...args) => {
+    _unsafeWindow.alert = (...args) => {
       console.log("not alert", args);
     };
   }
