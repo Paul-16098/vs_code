@@ -109,6 +109,7 @@ ajaxHooker.protect
 如果库劫持失败，可能是其他代码对xhr/fetch进行了二次劫持，protect方法会尝试阻止xhr和fetch被改写。应于document-start阶段尽早执行，部分网页下可能引发错误，谨慎使用。示例：
 
 ajaxHooker.protect();
+
 ajaxHooker.unhook
 将xhr和fetch恢复至劫持前的状态，调用此方法后，hook方法不再生效。示例：
 
