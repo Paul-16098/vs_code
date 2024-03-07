@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      3.0.5
+// @version      3.1.0
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -36,14 +36,21 @@ config:
     description: 再結束頁(https://www.69shu.pro/txt/*\/end.html)時是否自動關閉
     type: checkbox
     default: true
-  debug:
-    title: debug
-    description: debug
+  is_hook_alert:
+    title: 是否劫持alert
+    description: 是否劫持alert
+    type: checkbox
+    default: true
+---
+debug:
+  debug_log:
+    title: debug log?
+    description: debug log?
     type: checkbox
     default: false
  ==/UserConfig== */
 
-const debug = GM_getValue("config.debug", false);
+const debug = GM_getValue("debug.debug_log", false);
 
 const _unsafeWindow =
   typeof unsafeWindow === "undefined" ? window : unsafeWindow; //兼容 ios userscripts 的寫法
@@ -158,6 +165,11 @@ let pattern = {
 };
 let ele = [];
 if (pattern.book.is(url)) {
+  if (GM_getValue("config.is_hook_alert", true)) {
+    alert = (...args) => {
+      console.log("not alert", args);
+    };
+  }
   if (debug) {
     console.log("book");
   }
