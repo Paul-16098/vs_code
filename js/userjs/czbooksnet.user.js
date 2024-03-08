@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         czbooks.net
 // @namespace    pl816098
-// @version      1.1.3
+// @version      1.1.4
 // @description  自用
 // @author       pl816098
 // @match        https://czbooks.net/n/*/*
@@ -9,8 +9,8 @@
 // @grant        GM_addStyle
 // @license      MIT
 // @homepageURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/README.md
-// @downloadURL  https://update.greasyfork.org/scripts/487217/czbooksnet.user.js
-// @updateURL    https://update.greasyfork.org/scripts/487217/czbooksnet.meta.js
+// @downloadURL https://update.greasyfork.org/scripts/487217/czbooksnet.user.js
+// @updateURL https://update.greasyfork.org/scripts/487217/czbooksnet.meta.js
 // ==/UserScript==
 
 set_GM: {
@@ -54,14 +54,6 @@ _GM_addStyle(`
   width: auto;
 }
 `);
-let cssele = _GM_addStyle(`.content{width: ${window.screen.width}px;}`);
-cssele.id = "width";
-window.addEventListener("resize", function () {
-  // 在這裡執行您想要的操作
-  document.querySelector(
-    "#width"
-  ).innerHTML = `.content{width: ${window.screen.width}px;}`;
-});
 let ele = [
   "body > div.header",
   "body > div.footer",
