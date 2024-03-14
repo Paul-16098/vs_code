@@ -52,6 +52,7 @@ debug:
 
 const debug = GM_getValue("debug.debug_log", false);
 const is_close = GM_getValue("config.is_close", true);
+const auto_bookcase = GM_getValue("config.auto_bookcase", true);
 
 const _unsafeWindow =
   typeof unsafeWindow === "undefined" ? window : unsafeWindow; //兼容 ios userscripts 的寫法
@@ -70,7 +71,6 @@ if (typeof GM_addStyle !== "undefined") {
     return styleEle;
   };
 }
-// GM_registerMenuCommand("Config", CAT_userConfig);
 
 if (typeof zh_tran === "function") {
   zh_tran("t"); // 網站原有的函數
@@ -146,7 +146,6 @@ let pattern = {
     pattern:
       /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]+\/end\.html$/gm,
     is: (url = window.location.href) => {
-      // console.log(document.querySelector("div.page1 > a:nth-child(4)"));
       if (pattern.end.pattern.test(url)) {
         return true;
       } else {
@@ -156,11 +155,8 @@ let pattern = {
   },
   next_is_end: {
     is: (url) => {
-      if (
-        url === undefined &&
-        document.querySelector("div.page1 > a:nth-child(4)") !== undefined
-      ) {
-        url;
+      if (document.querySelector("div.page1 > a:nth-child(4)") !== undefined) {
+        url = document.querySelector("div.page1 > a:nth-child(4)").href;
       }
       if (pattern.end.pattern.test(url)) {
         return true;
@@ -230,7 +226,11 @@ if (pattern.book.is(url)) {
   } else {
     remove(ele);
   }
-  document.querySelector("#a_addbookcase").click();
+  if (auto_bookcase) {
+    document.querySelector("#a_addbookcase").click();
+  } else {
+    console.log("auto_bookcase !== true");
+  }
   let author = "";
   if (typeof bookinfo.author === "string") {
     author = bookinfo.author; // 網站原有的變量

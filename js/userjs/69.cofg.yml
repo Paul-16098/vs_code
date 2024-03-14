@@ -9,6 +9,11 @@ config:
     description: 是否劫持alert
     type: checkbox
     default: true
+  auto_bookcase:
+    title: 自動書籤
+    description: 自動書籤
+    type: checkbox
+    default: true
 ---
 debug:
   debug_log:
