@@ -23,4 +23,5 @@ else:
     for file in files:
         print(file)
 
-input("處理結束，按 Enter 鍵退出: ")
+print("處理結束，按 Enter 鍵退出: ")
+input()
