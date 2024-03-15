@@ -8,6 +8,11 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
 // @run-at       document-idle
+// @license      MIT
+// @supportURL   https://github.com/Paul-16098/vs_code/issues/
+// @homepageURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/README.md
+// @downloadURL  https://github.com/Paul-16098/vs_code/raw/main/js/userjs/github%E7%9A%84%E9%93%BE%E6%8E%A5%E5%9C%A8%E6%96%B0%E6%A0%87%E7%AD%BE%E9%A1%B5%E6%89%93%E5%BC%80.js
+// @updateURL    https://github.com/Paul-16098/vs_code/raw/main/js/userjs/github%E7%9A%84%E9%93%BE%E6%8E%A5%E5%9C%A8%E6%96%B0%E6%A0%87%E7%AD%BE%E9%A1%B5%E6%89%93%E5%BC%80.js
 // ==/UserScript==
 
 (function () {
