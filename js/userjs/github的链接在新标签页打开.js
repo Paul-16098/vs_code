@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         github的链接在新标签页打开
 // @namespace    pl816098
-// @version      1.0.2
+// @version      1.0.3
 // @description  让github的链接默认是在新标签页中打开而不是当前页打开
 // @author       pl816098
 // @match        https://github.com/*
@@ -18,7 +18,7 @@
 (function () {
   "use strict";
 
-  let not_blank = [
+  let not_blank_list = [
     'a[data-testid="raw-button"]',
   ];
 
@@ -26,8 +26,8 @@
     let links = document.getElementsByTagName("a");
     for (let i = 0; i < links.length; i++) {
       let found = false;
-      for (let ii = 0; ii < not_blank.length; ii++) {
-        let element = document.querySelector(not_blank[ii]);
+      for (let ii = 0; ii < not_blank_list.length; ii++) {
+        let element = document.querySelector(not_blank_list[ii]);
         if (element && element === links[i]) {
           found = true;
           console.log("not_blank, element === links[i]", element === links[i]);
