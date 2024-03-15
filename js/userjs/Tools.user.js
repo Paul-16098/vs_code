@@ -2,7 +2,7 @@
 // @name         Tools
 // @namespace    pl816098
 // @description  paul Tools
-// @version      2.2.1
+// @version      2.2.2
 // @match        *://*/*
 // @author       paul
 // @license      MIT
@@ -22,12 +22,12 @@
     title: 公開ajaxHooker接口
     description: 公開ajaxHooker接口
     type: checkbox
-    default: true
+    default: false
 ==/UserConfig== */
 
 const _unsafeWindow =
   typeof unsafeWindow === "undefined" ? window : unsafeWindow; //兼容 ios userscripts 的寫法
-const ajaxHooker_on = GM_getValue("公開接口.ajaxHooker", true);
+const ajaxHooker_on = GM_getValue("公開接口.ajaxHooker", false);
 _unsafeWindow.debug = (str, title = "INFO", type = "log") => {
   if (
     !(type === "log" || type === "info" || type === "error" || type === "warn")
