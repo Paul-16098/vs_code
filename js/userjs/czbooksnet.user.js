@@ -1,16 +1,17 @@
 // ==UserScript==
 // @name         czbooks.net
 // @namespace    pl816098
-// @version      1.1.4
+// @version      1.1.5
 // @description  自用
 // @author       pl816098
 // @match        https://czbooks.net/n/*/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=czbooks.net
 // @grant        GM_addStyle
 // @license      MIT
+// @supportURL   https://github.com/Paul-16098/vs_code/issues/
 // @homepageURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/README.md
-// @downloadURL https://update.greasyfork.org/scripts/487217/czbooksnet.user.js
-// @updateURL https://update.greasyfork.org/scripts/487217/czbooksnet.meta.js
+// @downloadURL  https://github.com/Paul-16098/vs_code/raw/main/js/userjs/czbooksnet.user.js
+// @updateURL    https://github.com/Paul-16098/vs_code/raw/main/js/userjs/czbooksnet.user.js
 // ==/UserScript==
 
 set_GM: {

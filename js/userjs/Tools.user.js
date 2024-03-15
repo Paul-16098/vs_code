@@ -2,7 +2,7 @@
 // @name         Tools
 // @namespace    pl816098
 // @description  paul Tools
-// @version      2.2.0
+// @version      2.2.1
 // @match        *://*/*
 // @author       paul
 // @license      MIT
@@ -10,6 +10,10 @@
 // @require      https://scriptcat.org/lib/637/%5E1.3.3/ajaxHooker.js
 // @run-at       document-start
 // @grant        unsafeWindow
+// @supportURL   https://github.com/Paul-16098/vs_code/issues/
+// @homepageURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/README.md
+// @downloadURL  https://github.com/Paul-16098/vs_code/raw/main/js/userjs/Tools.user.js
+// @updateURL    https://github.com/Paul-16098/vs_code/raw/main/js/userjs/Tools.user.js
 // ==/UserScript==
 
 /* ==UserConfig==
