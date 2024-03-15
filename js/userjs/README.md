@@ -10,6 +10,7 @@
 
 - [userjs](#userjs)
   - [目錄](#目錄)
+  - [tools](#tools)
   - [69shuba auto 書簽](#69shuba-auto-書簽)
   - [czbooksnet](#czbooksnet)
   - [ixdzs8tw](#ixdzs8tw)
@@ -18,11 +19,19 @@
 
 ---
 
+## tools
+
+自用
+
+[安裝](https://github.com/Paul-16098/vs_code/raw/main/js/userjs/Tools.user.js)
+
+---
+
 ## 69shuba auto 書簽
 
 自用
 
-[安裝](https://update.greasyfork.org/scripts/483067/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js)
+[安裝](https://github.com/Paul-16098/vs_code/raw/main/js/userjs/69shuba%20auto%20%E6%9B%B8%E7%B0%BD.user.js)
 
 ---
 
@@ -30,7 +39,7 @@
 
 自用
 
-[安裝](https://greasyfork.org/scripts/487217-czbooks-net/code/script.user.js)
+[安裝](https://github.com/Paul-16098/vs_code/raw/main/js/userjs/czbooksnet.user.js)
 
 ---
 
@@ -38,4 +47,4 @@
 
 自用
 
-[安裝](https://greasyfork.org/scripts/484505-ixdzs8-tw/code/script.user.js)
+[安裝](https://github.com/Paul-16098/vs_code/raw/main/js/userjs/ixdzs8tw.user.js)
