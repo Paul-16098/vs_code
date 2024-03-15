@@ -13,11 +13,7 @@
 (function () {
   "use strict";
 
-  let not_blank = [
-    'a[data-testid="raw-button"]',
-    "#repos-sticky-header > div > div > div > div.react-blob-header-edit-and-raw-actions > div:nth-child(1) > a:nth-child(1)",
-    "#repos-sticky-header > div > div > div > div.react-blob-header-edit-and-raw-actions > div:nth-child(1) > a",
-  ];
+  let not_blank = ['a[data-testid="raw-button"]'];
 
   setTimeout(() => {
     let links = document.getElementsByTagName("a");
