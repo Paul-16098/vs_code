@@ -8,29 +8,25 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
 // @run-at       document-idle
-// @license      MIT
-// @supportURL   https://github.com/Paul-16098/vs_code/issues/
-// @homepageURL  https://github.com/Paul-16098/vs_code/blob/main/js/userjs/README.md
-// @downloadURL  https://github.com/Paul-16098/vs_code/raw/main/js/userjs/github%E7%9A%84%E9%93%BE%E6%8E%A5%E5%9C%A8%E6%96%B0%E6%A0%87%E7%AD%BE%E9%A1%B5%E6%89%93%E5%BC%80.js
-// @updateURL    https://github.com/Paul-16098/vs_code/raw/main/js/userjs/github%E7%9A%84%E9%93%BE%E6%8E%A5%E5%9C%A8%E6%96%B0%E6%A0%87%E7%AD%BE%E9%A1%B5%E6%89%93%E5%BC%80.js
 // ==/UserScript==
 
 (function () {
   "use strict";
 
-  let not_blank_list = [
+  let not_blank = [
     'a[data-testid="raw-button"]',
+    "#repos-sticky-header > div > div > div > div.react-blob-header-edit-and-raw-actions > div:nth-child(1) > a:nth-child(1)",
+    "#repos-sticky-header > div > div > div > div.react-blob-header-edit-and-raw-actions > div:nth-child(1) > a",
   ];
 
   setTimeout(() => {
     let links = document.getElementsByTagName("a");
     for (let i = 0; i < links.length; i++) {
       let found = false;
-      for (let ii = 0; ii < not_blank_list.length; ii++) {
-        let element = document.querySelector(not_blank_list[ii]);
-        if (element && element === links[i]) {
+      for (let ii = 0; ii < not_blank.length; ii++) {
+        let element = document.querySelector(not_blank[ii]);
+        if (element && element.href === links[i].href) {
           found = true;
-          console.log("not_blank, element === links[i]", element === links[i]);
           break;
         }
       }
