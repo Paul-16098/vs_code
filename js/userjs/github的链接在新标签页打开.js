@@ -66,7 +66,7 @@ function run(_i = 0) {
           run(i);
         }
       }
-      if (links[i].href === undefined) {
+      if (links[i] === undefined) {
         break;
       }
       links[i].href = "javascript:void(0);";
