@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      3.1.6-bate(1.1)
+// @version      3.1.6-bate(1.2)
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -141,7 +141,7 @@ let pattern = {
         return false;
       }
     },
-  },
+  } /*,
   end: {
     pattern:
       /^(https?:\/\/)((www\.|)(69shuba|69xinshu|69shu|69shux)\.(com|pro))\/txt\/[0-9]+\/end\.html$/gm,
@@ -171,7 +171,7 @@ let pattern = {
         return false;
       }
     },
-  },
+  },*/,
 };
 let ele = [];
 if (pattern.book.is(url)) {
@@ -325,7 +325,7 @@ if (pattern.info.is(url)) {
       iframe.remove();
     }
   };
-}
+} /*
 if (pattern.end.is(url)) {
   if (debug) {
     console.log("end");
@@ -360,3 +360,4 @@ if (pattern.next_is_end.is()) {
     }
   });
 }
+*/
