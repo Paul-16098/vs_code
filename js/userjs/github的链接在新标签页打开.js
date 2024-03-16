@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         github的链接在新标签页打开
 // @namespace    pl816098
-// @version      1.0.7
+// @version      1.0.8
 // @description  让github的链接默认是在新标签页中打开而不是当前页打开
 // @author       pl816098
 // @match        https://github.com/*
@@ -68,7 +68,8 @@ config:
           break;
         }
         let o_url = new URL(url);
-        if (o_url.hostname.split(".")[0] !== "github.com".split(".")[0]) {
+        let patt = /(?:([^:/\\@\s])+\.)*github\.((?!io)|[a-zA-Z]{3})$/i;
+        if (patt.test(o_url.hostname)) {
           console.log('o_url.hostname !== "github.com"', o_url.hostname);
           if (host) {
             console.log(
