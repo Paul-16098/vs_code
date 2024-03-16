@@ -37,13 +37,6 @@ config:
   setTimeout(() => {
     console.log("github的链接在新标签页打开: setimeout start");
     let links = document.getElementsByTagName("a");
-    links.map((value, i) => {
-      not_run_url.forEach((ele) => {
-        if (value.href === ele) {
-          links[i] === undefined;
-        }
-      });
-    });
     loop0: for (let i = 0; i < links.length; i++) {
       console.log(
         "github的链接在新标签页打开: for(1), i: ",
@@ -51,9 +44,6 @@ config:
         ", links[i]: ",
         links[i]
       );
-      if (links[i] === undefined) {
-        break;
-      }
       let found = false;
       let shouldSkipLink = false;
       loop1: for (const ele of not_blank) {
@@ -65,12 +55,18 @@ config:
           shouldSkipLink = true;
           break loop1;
         }
-        if (shouldSkipLink === true) {
-          break;
-        }
       }
       if (!found) {
         let url = links[i].href;
+        loop2: for (const ele of not_run_url) {
+          if (url === ele) {
+            shouldSkipLink = true;
+            break loop2;
+          }
+        }
+        if (shouldSkipLink === true) {
+          break;
+        }
         let o_url = new URL(url);
         let patt = /(?:([^:/\\@\s])+\.)*github\.([a-zA-Z]{2,4})$/i;
         if (!patt.test(o_url.hostname)) {
