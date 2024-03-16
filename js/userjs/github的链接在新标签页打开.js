@@ -69,10 +69,13 @@ config:
         }
         let o_url = new URL(url);
         let patt = /(?:([^:/\\@\s])+\.)*github\.((?!io)|[a-zA-Z]{3})$/i;
-        if (patt.test(o_url.hostname)) {
+        if (!patt.test(o_url.hostname)) {
           console.log("patt.test(o_url.hostname)", patt.test(o_url.hostname));
           if (host) {
-            console.log("patt.test(o_url.hostname)", patt.test(o_url.hostname));
+            console.log(
+              "patt.test(o_url.hostname): break",
+              patt.test(o_url.hostname)
+            );
             break;
           }
         }
