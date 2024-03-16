@@ -23,53 +23,54 @@ config:
     default: true
  ==/UserConfig== */
 
- (function () {
-  "use strict";
+const host = GM_getValue("config.host", true);
+const not_blank = ['a[data-testid="raw-button"]'];
 
-  const host = GM_getValue("config.host", true);
-  const not_blank = ['a[data-testid="raw-button"]'];
+setTimeout(() => {
+  run();
+}, 2000);
 
-  setTimeout(() => {
-    console.log("github的链接在新标签页打开: setimeout start");
-    let links = document.getElementsByTagName("a");
-    for (let i = 0; i < links.length; i++) {
+function run(_i = 0) {
+  console.log("github的链接在新标签页打开: setimeout start");
+  let links = document.getElementsByTagName("a");
+  l1: for (let i = _i; i < links.length; i++) {
+    console.log(
+      "github的链接在新标签页打开: for(1), i: ",
+      i,
+      ", links[i]: ",
+      links[i]
+    );
+    let found = false;
+    for (let ii = 0; ii < not_blank.length && not_blank.length > 0; ii++) {
       console.log(
-        "github的链接在新标签页打开: for(1), i: ",
-        i,
-        ", links[i]: ",
-        links[i]
+        "github的链接在新标签页打开: for(2), ii: ",
+        ii,
+        ", not_blank[oi]: ",
+        not_blank[ii]
       );
-      let found = false;
-      for (let ii = 0; ii < not_blank.length && not_blank.length > 0; ii++) {
-        console.log(
-          "github的链接在新标签页打开: for(2), ii: ",
-          ii,
-          ", not_blank[oi]: ",
-          not_blank[ii]
-        );
-        let element = document.querySelector(not_blank[ii]);
-        if (element && element.href === links[i].href) {
-          found = true;
-          console.log("github的链接在新标签页打开: not_blank found", found);
-          break;
-        }
-      }
-      if (!found) {
-        let url = links[i].href;
-        let o_url = new URL(url);
-        if (o_url.hostname !== "github.com") {
-          console.log('o_url.hostname !== "github.com"');
-          if (host) {
-            console.log('o_url.hostname !== "github.com" so break');
-            break;
-          }
-        }
-        links[i].href = "javascript:void(0);";
-        links[i].onclick = function () {
-          window.open(url);
-        };
-        console.log("github的链接在新标签页打开 run done", links[i]);
+      let element = document.querySelector(not_blank[ii]);
+      if (element && element.href === links[i].href) {
+        found = true;
+        console.log("github的链接在新标签页打开: not_blank found", found);
+        break;
       }
     }
-  }, 2000);
-})();
+    if (!found) {
+      let url = links[i].href;
+      let o_url = new URL(url);
+      if (o_url.hostname !== "github.com") {
+        console.log('o_url.hostname !== "github.com"');
+        if (host) {
+          console.log('o_url.hostname !== "github.com" so break');
+          i++;
+          run(i);
+        }
+      }
+      links[i].href = "javascript:void(0);";
+      links[i].onclick = function () {
+        window.open(url);
+      };
+      console.log("github的链接在新标签页打开 run done", links[i]);
+    }
+  }
+}
