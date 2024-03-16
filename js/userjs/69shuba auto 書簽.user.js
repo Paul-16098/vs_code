@@ -50,6 +50,9 @@ debug:
     default: false
  ==/UserConfig== */
 
+// https://github.com/scriptscat/scriptcat/issues/264
+// 希望支持// @grant        window.close
+
 const debug = GM_getValue("debug.debug_log", false);
 const is_close = GM_getValue("config.is_close", true);
 const auto_bookcase = GM_getValue("config.auto_bookcase", true);
