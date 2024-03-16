@@ -33,7 +33,7 @@ setTimeout(() => {
 function run(_i = 0) {
   console.log("github的链接在新标签页打开: setimeout start");
   let links = document.getElementsByTagName("a");
-  l1: for (let i = _i; i < links.length; i++) {
+  for (let i = _i; i < links.length; i++) {
     console.log(
       "github的链接在新标签页打开: for(1), i: ",
       i,
@@ -65,6 +65,9 @@ function run(_i = 0) {
           i++;
           run(i);
         }
+      }
+      if (links[i].href === undefined) {
+        break;
       }
       links[i].href = "javascript:void(0);";
       links[i].onclick = function () {
