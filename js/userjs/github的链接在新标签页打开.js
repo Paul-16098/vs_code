@@ -33,11 +33,11 @@ setTimeout(() => {
 function run(_i = 0) {
   console.log("github的链接在新标签页打开: run start");
   let links = document.getElementsByTagName("a");
+  if (links[_i] === undefined) {
+    console.log("links[i] === undefined, _i", _i);
+    return true;
+  }
   for (let i = _i; i <= links.length; i++) {
-    if (links[i] === undefined) {
-      console.log("links[i] === undefined, i", i);
-      return true;
-    }
     console.log(
       "github的链接在新标签页打开: for(1), i: ",
       i,
@@ -67,7 +67,7 @@ function run(_i = 0) {
         if (host) {
           console.log('o_url.hostname !== "github.com" so break');
           i++;
-          run(i);
+          return run(i);
         }
       }
       links[i].href = "javascript:void(0);";
