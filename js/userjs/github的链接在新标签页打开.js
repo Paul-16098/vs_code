@@ -55,6 +55,7 @@ config:
         }
       }
       if (!found) {
+        console.log("!found")
         let url = links[i].href;
         let o_url = new URL(url);
         let patt = /(?:([^:/\\@\s])+\.)*github\.([a-zA-Z]{2,4})$/i;
