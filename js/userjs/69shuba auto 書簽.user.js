@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      3.1.6-bate(1.3)
+// @version      3.1.5
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -304,47 +304,50 @@ if (pattern.info.is(url)) {
   document.querySelector(
     "body > div.container > ul > li.col-8 > div:nth-child(1) > div > div.booknav2 > p:nth-child(3) > a"
   ).style.color = "#007ead";
-
-  _unsafeWindow.onload = function () {
-    let read = document.querySelector(
-      "body > div.container > ul > li.col-8 > div:nth-child(1) > div > div.addbtn > a.btn.link-instanted"
-    );
-    if (!pattern.book.is(read.href)) {
-      let iframe = document.getElementById("iframe_book");
-      if (!iframe) {
-        iframe = document.createElement("iframe");
-        iframe.id = "iframe_book";
-        iframe.src = `https://www.69shu.pro/book/${bookinfo.articleid}`;
-        iframe.style.width = 0;
-        iframe.style.height = 0;
-        document.body.appendChild(iframe);
-      }
-      let c = function () {
-        try {
-          document.querySelector(
-            "body > div.container > ul > li.col-8 > div:nth-child(1) > div > div.addbtn > a.btn.link-instanted"
-          ).href = iframe.contentDocument.querySelector(
-            'li[data-num="1"] > a'
-          ).href;
-          iframe.remove();
-        } catch (e) {
-          console.error(e);
-          return;
+  /*
+  let c = function () {
+    try {
+      let iframe;
+      let read = document.querySelector(
+        "body > div.container > ul > li.col-8 > div:nth-child(1) > div > div.addbtn > a:nth-child(1)"
+      );
+      if (!pattern.book.is(read.href)) {
+        iframe = document.getElementById("iframe_book");
+        if (!iframe) {
+          iframe = document.createElement("iframe");
+          iframe.id = "iframe_book";
+          iframe.src = `https://www.69shu.pro/book/${bookinfo.articleid}`;
+          iframe.style.width = 0;
+          iframe.style.height = 0;
+          document.body.appendChild(iframe);
         }
-        return true;
-      };
-      let r = c();
-      let rr;
-      if (r !== true) {
-        r = setInterval(() => {
-          rr = c();
-          if (rr === true) {
-            clearInterval(r);
-          }
-        }, 5000);
       }
+
+      document.querySelector(
+        "body > div.container > ul > li.col-8 > div:nth-child(1) > div > div.addbtn > a.btn.link-instanted"
+      ).href = iframe.contentWindow.document.querySelector(
+        'li[data-num="1"] > a'
+      ).href;
+      iframe.remove();
+    } catch (e) {
+      console.error(e);
+      return;
     }
+    return true;
   };
+  let r;
+  _unsafeWindow.onload = function () {
+    r = c();
+  };
+  let rr;
+  if (r !== true) {
+    r = setInterval(() => {
+      rr = c();
+      if (rr === true) {
+        clearInterval(r);
+      }
+    }, 5000);
+  }*/
 } /*
 if (pattern.end.is(url)) {
   if (debug) {
