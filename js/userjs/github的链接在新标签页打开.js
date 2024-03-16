@@ -28,6 +28,7 @@ config:
 
   const host = GM_getValue("config.host", true);
   const not_blank = ['a[data-testid="raw-button"]'];
+  const not_run_url = ["javascript:void(0);"];
 
   setTimeout(() => {
     console.log("github的链接在新标签页打开: setimeout start");
@@ -40,22 +41,28 @@ config:
         links[i]
       );
       let found = false;
-      for (let ii = 0; ii < not_blank.length && not_blank.length > 0; ii++) {
-        console.log(
-          "github的链接在新标签页打开: for(2), ii: ",
-          ii,
-          ", not_blank[oi]: ",
-          not_blank[ii]
-        );
-        let element = document.querySelector(not_blank[ii]);
+      let shouldSkipLink = false;
+      loop1: for (const ele of not_blank) {
+        console.log(`github的链接在新标签页打开: for(2), ele: `, ele);
+        let element = document.querySelector(ele);
         if (element && element.href === links[i].href) {
           found = true;
           console.log("github的链接在新标签页打开: not_blank found", found);
-          break;
+          shouldSkipLink = true;
+          break loop1;
         }
       }
       if (!found) {
         let url = links[i].href;
+        loop2: for (const ele of not_run_url) {
+          if (url === ele) {
+            shouldSkipLink = true;
+            break loop2;
+          }
+        }
+        if (shouldSkipLink === true) {
+          break;
+        }
         let o_url = new URL(url);
         if (o_url.hostname !== "github.com") {
           console.log('o_url.hostname !== "github.com"');
