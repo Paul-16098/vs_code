@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         github的链接在新标签页打开
 // @namespace    pl816098
-// @version      1.0.14
+// @version      1.0.15
 // @description  让github的链接默认是在新标签页中打开而不是当前页打开
 // @author       pl816098
 // @match        https://github.com/*
@@ -33,31 +33,7 @@ setTimeout(() => {
 function run(_i = 0) {
   // console.log("github的链接在新标签页打开: run start");
   let links = document.getElementsByTagName("a");
-  for (let i = _i; i <= links.length; i++) {
-    try {
-      if (links[_i] === undefined) {
-        // console.log("links[_i] === undefined, _i", _i);
-        // console.log("END");
-        return true;
-      } else if (links[_i].href === undefined) {
-        // console.log("links[_i].href === undefined, _i", _i);
-        // console.log("END");
-        return true;
-      } else if (links[i] === undefined) {
-        // console.log("links[i] === undefined, i", i);
-        // console.log("END");
-        return true;
-      } else if (links[i].href === undefined) {
-        // console.log("links[i].href === undefined, i", _i);
-        // console.log("END");
-        return true;
-      } else {
-        // console.log("links[i].href !== undefined, _i", _i);
-      }
-    } catch (e) {
-      // console.log("END");
-      return true;
-    }
+  for (let i = _i; i < links.length; i++) {
     // console.log(
     // "github的链接在新标签页打开: for(1), i: ",
     // i,
@@ -90,6 +66,9 @@ function run(_i = 0) {
           i++;
           return run(i);
         }
+      } else if (o_url.protocol === "javascript:") {
+        i++;
+        return run(i);
       }
       links[i].href = "javascript:void(0);";
       links[i].onclick = function () {
