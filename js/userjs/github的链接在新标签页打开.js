@@ -41,6 +41,12 @@ config:
       );
       let found = false;
       for (let ii = 0; ii < not_blank.length && not_blank.length > 0; ii++) {
+        console.log(
+          "github的链接在新标签页打开: for(2), ii: ",
+          ii,
+          ", not_blank[oi]: ",
+          not_blank[ii]
+        );
         let element = document.querySelector(not_blank[ii]);
         if (element && element.href === links[i].href) {
           found = true;
@@ -62,7 +68,7 @@ config:
         links[i].onclick = function () {
           window.open(url);
         };
-        // console.log("github的链接在新标签页打开 run done", links[i]);
+        console.log("github的链接在新标签页打开 run done", links[i]);
       }
     }
   }, 2000);
