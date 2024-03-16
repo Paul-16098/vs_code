@@ -45,7 +45,7 @@ function run(_i = 0) {
       console.log(
         "github的链接在新标签页打开: for(2), ii: ",
         ii,
-        ", not_blank[oi]: ",
+        ", not_blank[ii]: ",
         not_blank[ii]
       );
       let element = document.querySelector(not_blank[ii]);
