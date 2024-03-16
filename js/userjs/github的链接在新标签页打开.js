@@ -64,7 +64,7 @@ config:
           break;
         }
         let o_url = new URL(url);
-        if (o_url.hostname !== "github.com") {
+        if (o_url.hostname.split(".")[0] !== "github.com".split(".")[0]) {
           console.log('o_url.hostname !== "github.com"', o_url.hostname);
           if (host) {
             console.log(
