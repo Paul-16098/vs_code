@@ -36,7 +36,7 @@ function run(_i = 0) {
   for (let i = _i; i <= links.length; i++) {
     if (links[i] === undefined) {
       console.log("links[i] === undefined, i", i);
-      break;
+      return true;
     }
     console.log(
       "github的链接在新标签页打开: for(1), i: ",
