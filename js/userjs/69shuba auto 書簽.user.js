@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      3.1.6-bate(1.0)
+// @version      3.1.6-bate(1.1)
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -302,25 +302,29 @@ if (pattern.info.is(url)) {
     "body > div.container > ul > li.col-8 > div:nth-child(1) > div > div.booknav2 > p:nth-child(3) > a"
   ).style.color = "#007ead";
 
-  let read = document.querySelector(
-    "body > div.container > ul > li.col-8 > div:nth-child(1) > div > div.addbtn > a.btn.link-instanted"
-  );
-  if (!pattern.book.is(read.href)) {
-    let iframe = document.getElementById("iframe_book");
-    if (!iframe) {
-      iframe = document.createElement("iframe");
-      iframe.id = "iframe_book";
-      iframe.src = `https://www.69shu.pro/book/${bookinfo.articleid}`;
-      iframe.style.width = 0;
-      iframe.style.height = 0;
-      document.body.appendChild(iframe);
-    }
-
-    document.querySelector(
+  _unsafeWindow.onload = function () {
+    let read = document.querySelector(
       "body > div.container > ul > li.col-8 > div:nth-child(1) > div > div.addbtn > a.btn.link-instanted"
-    ).href = iframe.contentDocument.querySelector('li[data-num="1"] > a').href;
-    iframe.remove();
-  }
+    );
+    if (!pattern.book.is(read.href)) {
+      let iframe = document.getElementById("iframe_book");
+      if (!iframe) {
+        iframe = document.createElement("iframe");
+        iframe.id = "iframe_book";
+        iframe.src = `https://www.69shu.pro/book/${bookinfo.articleid}`;
+        iframe.style.width = 0;
+        iframe.style.height = 0;
+        document.body.appendChild(iframe);
+      }
+
+      document.querySelector(
+        "body > div.container > ul > li.col-8 > div:nth-child(1) > div > div.addbtn > a.btn.link-instanted"
+      ).href = iframe.contentDocument.querySelector(
+        'li[data-num="1"] > a'
+      ).href;
+      iframe.remove();
+    }
+  };
 }
 if (pattern.end.is(url)) {
   if (debug) {
