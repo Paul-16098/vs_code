@@ -33,7 +33,7 @@ setTimeout(() => {
 function run(_i = 0) {
   console.log("github的链接在新标签页打开: setimeout start");
   let links = document.getElementsByTagName("a");
-  for (let i = _i; i < links.length; i++) {
+  for (let i = _i; i <= links.length; i++) {
     console.log(
       "github的链接在新标签页打开: for(1), i: ",
       i,
