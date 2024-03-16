@@ -62,10 +62,11 @@ function run(_i = 0) {
     if (!found) {
       let url = links[i].href;
       let o_url = new URL(url);
-      if (o_url.hostname !== "github.com") {
-        console.log('o_url.hostname !== "github.com"');
+      let patt = /(?:([^:/\\@\s])+\.)*github\.([a-zA-Z]{2,4})$/i;
+      if (!patt.test(o_url.hostname)) {
+        console.log("!patt.test(o_url.hostname)", o_url.hostname);
         if (host) {
-          console.log('o_url.hostname !== "github.com" so break');
+          console.log("!patt.test(o_url.hostname) so break");
           i++;
           return run(i);
         }
