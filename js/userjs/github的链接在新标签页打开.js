@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         github的链接在新标签页打开
 // @namespace    pl816098
-// @version      1.0.13
+// @version      1.0.14
 // @description  让github的链接默认是在新标签页中打开而不是当前页打开
 // @author       pl816098
 // @match        https://github.com/*
@@ -31,31 +31,51 @@ setTimeout(() => {
 }, 2000);
 
 function run(_i = 0) {
-  console.log("github的链接在新标签页打开: run start");
+  // console.log("github的链接在新标签页打开: run start");
   let links = document.getElementsByTagName("a");
-  if (links[_i] === undefined) {
-    console.log("links[i] === undefined, _i", _i);
-    return true;
-  }
   for (let i = _i; i <= links.length; i++) {
-    console.log(
-      "github的链接在新标签页打开: for(1), i: ",
-      i,
-      ", links[i]: ",
-      links[i]
-    );
+    try {
+      if (links[_i] === undefined) {
+        // console.log("links[_i] === undefined, _i", _i);
+        // console.log("END");
+        return true;
+      } else if (links[_i].href === undefined) {
+        // console.log("links[_i].href === undefined, _i", _i);
+        // console.log("END");
+        return true;
+      } else if (links[i] === undefined) {
+        // console.log("links[i] === undefined, i", i);
+        // console.log("END");
+        return true;
+      } else if (links[i].href === undefined) {
+        // console.log("links[i].href === undefined, i", _i);
+        // console.log("END");
+        return true;
+      } else {
+        // console.log("links[i].href !== undefined, _i", _i);
+      }
+    } catch (e) {
+      // console.log("END");
+      return true;
+    }
+    // console.log(
+    // "github的链接在新标签页打开: for(1), i: ",
+    // i,
+    // ", links[i]: ",
+    // links[i]
+    // );
     let found = false;
     for (let ii = 0; ii < not_blank.length && not_blank.length > 0; ii++) {
-      console.log(
-        "github的链接在新标签页打开: for(2), ii: ",
-        ii,
-        ", not_blank[ii]: ",
-        not_blank[ii]
-      );
+      // console.log(
+      // "github的链接在新标签页打开: for(2), ii: ",
+      // ii,
+      // ", not_blank[ii]: ",
+      // not_blank[ii]
+      // );
       let element = document.querySelector(not_blank[ii]);
       if (element && element.href === links[i].href) {
         found = true;
-        console.log("github的链接在新标签页打开: not_blank found", found);
+        // console.log("github的链接在新标签页打开: not_blank found", found);
         break;
       }
     }
@@ -64,9 +84,9 @@ function run(_i = 0) {
       let o_url = new URL(url);
       let patt = /(?:([^:/\\@\s])+\.)*github\.([a-zA-Z]{2,4})$/i;
       if (!patt.test(o_url.hostname)) {
-        console.log("!patt.test(o_url.hostname)", o_url.hostname);
+        // console.log("!patt.test(o_url.hostname)", o_url.hostname);
         if (host) {
-          console.log("!patt.test(o_url.hostname) so break");
+          // console.log("!patt.test(o_url.hostname) so break");
           i++;
           return run(i);
         }
@@ -75,7 +95,7 @@ function run(_i = 0) {
       links[i].onclick = function () {
         window.open(url);
       };
-      console.log("github的链接在新标签页打开 run done", links[i]);
+      // console.log("github的链接在新标签页打开 run done", links[i]);
     }
   }
 }
