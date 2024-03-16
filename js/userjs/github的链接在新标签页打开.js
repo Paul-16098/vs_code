@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         github的链接在新标签页打开
 // @namespace    pl816098
-// @version      1.0.10
+// @version      1.0.12
 // @description  让github的链接默认是在新标签页中打开而不是当前页打开
 // @author       pl816098
 // @match        https://github.com/*
@@ -28,16 +28,11 @@ config:
 
   const host = GM_getValue("config.host", true);
   const not_blank = ['a[data-testid="raw-button"]'];
-  const not_run_url = [
-    "javascript:void(0);",
-    "javascript:void(0)",
-    "javascript:;",
-  ];
 
   setTimeout(() => {
     console.log("github的链接在新标签页打开: setimeout start");
     let links = document.getElementsByTagName("a");
-    loop0: for (let i = 0; i < links.length; i++) {
+    for (let i = 0; i < links.length; i++) {
       console.log(
         "github的链接在新标签页打开: for(1), i: ",
         i,
@@ -45,28 +40,22 @@ config:
         links[i]
       );
       let found = false;
-      let shouldSkipLink = false;
-      loop1: for (const ele of not_blank) {
-        console.log(`github的链接在新标签页打开: for(2), ele: `, ele);
-        let element = document.querySelector(ele);
+      for (let ii = 0; ii < not_blank.length && not_blank.length > 0; ii++) {
+        console.log(
+          "github的链接在新标签页打开: for(2), ii: ",
+          ii,
+          ", not_blank[oi]: ",
+          not_blank[ii]
+        );
+        let element = document.querySelector(not_blank[ii]);
         if (element && element.href === links[i].href) {
           found = true;
           console.log("github的链接在新标签页打开: not_blank found", found);
-          shouldSkipLink = true;
-          break loop1;
+          break;
         }
       }
       if (!found) {
         let url = links[i].href;
-        loop2: for (const ele of not_run_url) {
-          if (url === ele) {
-            shouldSkipLink = true;
-            break loop2;
-          }
-        }
-        if (shouldSkipLink === true) {
-          break;
-        }
         let o_url = new URL(url);
         let patt = /(?:([^:/\\@\s])+\.)*github\.([a-zA-Z]{2,4})$/i;
         if (!patt.test(o_url.hostname)) {
@@ -76,7 +65,7 @@ config:
               "patt.test(o_url.hostname): break",
               patt.test(o_url.hostname)
             );
-            break loop0;
+            break;
           }
         }
         links[i].href = "javascript:void(0);";
@@ -86,5 +75,5 @@ config:
         console.log("github的链接在新标签页打开 run done", links[i]);
       }
     }
-  }, 5000);
+  }, 2000);
 })();
