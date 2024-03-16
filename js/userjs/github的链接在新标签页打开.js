@@ -28,7 +28,11 @@ config:
 
   const host = GM_getValue("config.host", true);
   const not_blank = ['a[data-testid="raw-button"]'];
-  const not_run_url = ["javascript:void(0);"];
+  const not_run_url = [
+    "javascript:void(0);",
+    "javascript:void(0)",
+    "javascript:;",
+  ];
 
   setTimeout(() => {
     console.log("github的链接在新标签页打开: setimeout start");
