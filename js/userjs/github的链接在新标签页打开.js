@@ -23,7 +23,7 @@ config:
     default: true
  ==/UserConfig== */
 
-(function () {
+ (function () {
   "use strict";
 
   const host = GM_getValue("config.host", true);
@@ -55,17 +55,12 @@ config:
         }
       }
       if (!found) {
-        console.log("!found")
         let url = links[i].href;
         let o_url = new URL(url);
-        let patt = /(?:([^:/\\@\s])+\.)*github\.([a-zA-Z]{2,4})$/i;
-        if (!patt.test(o_url.hostname)) {
-          console.log("patt.test(o_url.hostname)", patt.test(o_url.hostname));
+        if (o_url.hostname !== "github.com") {
+          console.log('o_url.hostname !== "github.com"');
           if (host) {
-            console.log(
-              "patt.test(o_url.hostname): break",
-              patt.test(o_url.hostname)
-            );
+            console.log('o_url.hostname !== "github.com" so break');
             break;
           }
         }
