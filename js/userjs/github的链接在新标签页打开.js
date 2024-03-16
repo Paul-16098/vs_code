@@ -34,10 +34,10 @@ config:
     "javascript:;",
   ];
 
-  setTimeout(() => {
+  setInterval(() => {
     console.log("github的链接在新标签页打开: setimeout start");
     let links = document.getElementsByTagName("a");
-    for (let i = 0; i < links.length; i++) {
+    loop0: for (let i = 0; i < links.length; i++) {
       console.log(
         "github的链接在新标签页打开: for(1), i: ",
         i,
@@ -76,7 +76,7 @@ config:
               "patt.test(o_url.hostname): break",
               patt.test(o_url.hostname)
             );
-            break;
+            break loop0;
           }
         }
         links[i].href = "javascript:void(0);";
@@ -86,5 +86,5 @@ config:
         console.log("github的链接在新标签页打开 run done", links[i]);
       }
     }
-  }, 2000);
+  }, 5000);
 })();
