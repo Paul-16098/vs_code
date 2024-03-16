@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         github的链接在新标签页打开
 // @namespace    pl816098
-// @version      1.0.12
+// @version      1.0.13
 // @description  让github的链接默认是在新标签页中打开而不是当前页打开
 // @author       pl816098
 // @match        https://github.com/*
@@ -31,9 +31,13 @@ setTimeout(() => {
 }, 2000);
 
 function run(_i = 0) {
-  console.log("github的链接在新标签页打开: setimeout start");
+  console.log("github的链接在新标签页打开: run start");
   let links = document.getElementsByTagName("a");
   for (let i = _i; i <= links.length; i++) {
+    if (links[i] === undefined) {
+      console.log("links[i] === undefined, i", i);
+      break;
+    }
     console.log(
       "github的链接在新标签页打开: for(1), i: ",
       i,
@@ -65,9 +69,6 @@ function run(_i = 0) {
           i++;
           run(i);
         }
-      }
-      if (links[i] === undefined) {
-        break;
       }
       links[i].href = "javascript:void(0);";
       links[i].onclick = function () {
