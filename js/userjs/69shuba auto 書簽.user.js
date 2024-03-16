@@ -156,7 +156,12 @@ let pattern = {
   next_is_end: {
     is: (url) => {
       if (document.querySelector("div.page1 > a:nth-child(4)") !== undefined) {
-        url = document.querySelector("div.page1 > a:nth-child(4)").href;
+        if (
+          document.querySelector("div.page1 > a:nth-child(4)").href !==
+          undefined
+        ) {
+          url = document.querySelector("div.page1 > a:nth-child(4)").href;
+        }
       } else {
         return undefined;
       }
@@ -296,6 +301,12 @@ if (pattern.info.is(url)) {
   document.querySelector(
     "body > div.container > ul > li.col-8 > div:nth-child(1) > div > div.booknav2 > p:nth-child(3) > a"
   ).style.color = "#007ead";
+
+  let read = document.querySelector(
+    "body > div.container > ul > li.col-8 > div:nth-child(1) > div > div.addbtn > a.btn.link-instanted"
+  );
+  if (!pattern.book.is(read.href)) {
+  }
 }
 if (pattern.end.is(url)) {
   if (debug) {

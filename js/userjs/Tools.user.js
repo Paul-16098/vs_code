@@ -2,7 +2,7 @@
 // @name         Tools
 // @namespace    pl816098
 // @description  paul Tools
-// @version      2.2.2
+// @version      2.2.4
 // @match        *://*/*
 // @author       paul
 // @license      MIT
@@ -119,8 +119,10 @@ ajaxHooker.unhook
 
 ajaxHooker.unhook();
 */
-if (ajaxHooker_on) {
+if (ajaxHooker_on === true) {
   _unsafeWindow.ajaxHooker = ajaxHooker;
+} else {
+  ajaxHooker.unhook();
 }
 
 function set_gm() {
