@@ -34,7 +34,7 @@ config:
     "javascript:;",
   ];
 
-  setInterval(() => {
+  setTimeout(() => {
     console.log("github的链接在新标签页打开: setimeout start");
     let links = document.getElementsByTagName("a");
     loop0: for (let i = 0; i < links.length; i++) {
