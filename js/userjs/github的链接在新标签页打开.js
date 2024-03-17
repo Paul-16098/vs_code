@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         github的链接在新标签页打开
 // @namespace    pl816098
-// @version      1.1.1.0
+// @version      1.1.2.0
 // @description  让github的链接默认是在新标签页中打开而不是当前页打开
 // @author       pl816098
 // @match        https://github.com/*
@@ -38,6 +38,23 @@ const not_blank_all = [
 ];
 
 setTimeout(() => {
+  // 目标元素
+  const targetElement = document;
+
+  // 创建一个 MutationObserver 实例
+  const observer = new MutationObserver(function (mutationsList, observer) {
+    // 在回调函数中处理变化
+    console.log("目标元素: document變化");
+    run();
+  });
+
+  // 开始观察目标元素
+  observer.observe(targetElement, {
+    attributes: true,
+    childList: true,
+    subtree: true,
+  });
+
   run();
 }, 2000);
 
