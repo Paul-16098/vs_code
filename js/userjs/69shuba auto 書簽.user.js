@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      3.1.12
+// @version      3.1.12.1
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -58,7 +58,7 @@ debug:
 // https://github.com/scriptscat/scriptcat/issues/264
 // 希望支持// @grant        window.close
 
-const debug = GM_getValue("debug.debug_log", false);
+const debug_log = GM_getValue("debug.debug_log", false);
 const is_close = GM_getValue("config.is_close", true);
 const auto_bookcase = GM_getValue("config.auto_bookcase", true);
 
@@ -84,14 +84,14 @@ if (typeof zh_tran === "function") {
   zh_tran("t"); // 網站原有的函數
 }
 
-if (debug) {
+if (debug_log) {
   console.log("set func remove start");
 }
 function remove(...args) {
   try {
     if (args && args.length > 0) {
       args.forEach((args) => {
-        if (debug) {
+        if (debug_log) {
           console.log("args: ", args);
           console.log(
             "document.querySelectorAll(args): ",
@@ -115,7 +115,7 @@ function remove(...args) {
   }
   return [true, args];
 }
-if (debug) {
+if (debug_log) {
   console.log("set func remove end\n", remove);
 }
 
@@ -188,10 +188,10 @@ if (pattern.book.is(url)) {
       console.log("not alert", args);
     };
   }
-  if (debug) {
+  if (debug_log) {
     console.log("book");
   }
-  if (debug) {
+  if (debug_log) {
     console.log("_GM_addStyle start");
   }
   _GM_addStyle(`
@@ -215,11 +215,11 @@ if (pattern.book.is(url)) {
 }
 
       `);
-  if (debug) {
+  if (debug_log) {
     console.log("_GM_addStyle end");
   }
 
-  if (debug) {
+  if (debug_log) {
     console.log("set ele start\n", ele);
   }
   ele = [
@@ -231,10 +231,10 @@ if (pattern.book.is(url)) {
     "body > div.container > div > div.yueduad1",
     "#goTopBtn",
   ];
-  if (debug) {
+  if (debug_log) {
     console.log("set ele end\n", ele);
   }
-  if (debug) {
+  if (debug_log) {
     console.log("remove(ele) start");
     let remove_return = remove(ele);
     console.log("remove(ele) end\n", remove_return);
@@ -279,20 +279,20 @@ if (pattern.book.is(url)) {
       } else {
         title = document.querySelector("title").innerText.split("-")[0];
       }
-      let yueduad1;
+      let old_titleElement;
       if (pattern.is69shux(window.location.host) === false) {
-        yueduad1 = document.querySelector(
+        old_titleElement = document.querySelector(
           "body > div.container > div > div.yueduad1"
         );
       } else {
-        yueduad1 = document.querySelector(
+        old_titleElement = document.querySelector(
           "div.container > div.mybox > div.tools"
         );
       }
       if (
-        yueduad1 === null ||
-        yueduad1 === undefined ||
-        typeof yueduad1 === "undefined"
+        old_titleElement === null ||
+        old_titleElement === undefined ||
+        typeof old_titleElement === "undefined"
       ) {
         console.warn(
           "break get_title;",
@@ -301,23 +301,23 @@ if (pattern.book.is(url)) {
           yueduad1 === undefined ||
           typeof yueduad1 === "undefined"
         )`,
-          yueduad1 === null ||
-            yueduad1 === undefined ||
-            typeof yueduad1 === "undefined"
+          old_titleElement === null ||
+            old_titleElement === undefined ||
+            typeof old_titleElement === "undefined"
         );
         break get_title;
       }
-      let titleElement = document.createElement("a");
-      titleElement.appendChild(document.createTextNode(title));
+      let new_titleElement = document.createElement("a");
+      new_titleElement.appendChild(document.createTextNode(title));
       let articleid;
       if (typeof bookinfo.articleid === "string") {
         articleid = bookinfo.articleid;
       } else {
         articleid = location.href.split("/")[4];
       }
-      titleElement.href = `${origin}/book/${articleid}.htm`;
-      titleElement.id = "title";
-      yueduad1.replaceWith(titleElement);
+      new_titleElement.href = `${origin}/book/${articleid}.htm`;
+      new_titleElement.id = "title";
+      old_titleElement.replaceWith(new_titleElement);
     } catch (error) {
       console.warn("break get_title;", error);
       break get_title;
@@ -325,7 +325,7 @@ if (pattern.book.is(url)) {
   }
 }
 if (pattern.info.is(url)) {
-  if (debug) {
+  if (debug_log) {
     console.log("info");
   }
   document
