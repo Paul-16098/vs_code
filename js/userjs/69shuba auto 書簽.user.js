@@ -294,6 +294,17 @@ if (pattern.book.is(url)) {
         yueduad1 === undefined ||
         typeof yueduad1 === "undefined"
       ) {
+        console.warn(
+          "break get_title;",
+          `(
+          yueduad1 === null ||
+          yueduad1 === undefined ||
+          typeof yueduad1 === "undefined"
+        )`,
+          yueduad1 === null ||
+            yueduad1 === undefined ||
+            typeof yueduad1 === "undefined"
+        );
         break get_title;
       }
       let titleElement = document.createElement("a");
