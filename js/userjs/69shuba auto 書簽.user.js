@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      3.1.6
+// @version      3.1.7
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -280,7 +280,7 @@ if (pattern.book.is(url)) {
       "body > div.container > div > div.yueduad1"
     );
   } else {
-    yueduad1 = document.querySelector("#container > div > div.tools");
+    yueduad1 = document.querySelector("div.container > div.mybox > div.tools");
   }
   let titleElement = document.createElement("a");
   titleElement.appendChild(document.createTextNode(title));
