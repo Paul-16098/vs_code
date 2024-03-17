@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         github的链接在新标签页打开
+// @name         github的鏈接在新標籤頁打開
 // @namespace    pl816098
-// @version      1.1.2.0
-// @description  让github的链接默认是在新标签页中打开而不是当前页打开
+// @version      1.1.2.1
+// @description  讓github的鏈接默認是在新標籤頁中打開而不是當前頁打開
 // @author       pl816098
 // @match        https://github.com/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
@@ -38,17 +38,17 @@ const not_blank_all = [
 ];
 
 setTimeout(() => {
-  // 目标元素
+  // 目標元素
   const targetElement = document;
 
-  // 创建一个 MutationObserver 实例
+  // 創建一個 MutationObserver 實例
   const observer = new MutationObserver(function (mutationsList, observer) {
-    // 在回调函数中处理变化
-    console.log("目标元素: document變化");
+    // 在回調函數中處理變化
+    console.log("目標元素: document變化");
     run();
   });
 
-  // 开始观察目标元素
+  // 開始觀察目標元素
   observer.observe(targetElement, {
     attributes: true,
     childList: true,
@@ -59,11 +59,11 @@ setTimeout(() => {
 }, 2000);
 
 function run(_i = 0) {
-  // console.log("github的链接在新标签页打开: run start");
+  // console.log("github的鏈接在新標籤頁打開: run start");
   let links = document.getElementsByTagName("a");
   for (let i = _i; i < links.length; i++) {
     // console.log(
-    // "github的链接在新标签页打开: for(1), i: ",
+    // "github的鏈接在新標籤頁打開: for(1), i: ",
     // i,
     // ", links[i]: ",
     // links[i]
@@ -71,7 +71,7 @@ function run(_i = 0) {
     let found = false;
     for (let ii = 0; ii < not_blank.length && not_blank.length > 0; ii++) {
       // console.log(
-      // "github的链接在新标签页打开: for(2), ii: ",
+      // "github的鏈接在新標籤頁打開: for(2), ii: ",
       // ii,
       // ", not_blank[ii]: ",
       // not_blank[ii]
@@ -79,7 +79,7 @@ function run(_i = 0) {
       let element = document.querySelector(not_blank[ii]);
       if (element && element.href === links[i].href) {
         found = true;
-        // console.log("github的链接在新标签页打开: not_blank found", found);
+        // console.log("github的鏈接在新標籤頁打開: not_blank found", found);
         break;
       }
     }
@@ -89,7 +89,7 @@ function run(_i = 0) {
       ii++
     ) {
       // console.log(
-      // "github的链接在新标签页打开: for(2), ii: ",
+      // "github的鏈接在新標籤頁打開: for(2), ii: ",
       // ii,
       // ", not_blank[ii]: ",
       // not_blank[ii]
@@ -99,7 +99,7 @@ function run(_i = 0) {
         const element2 = element[iii];
         if (element2 && element2.href === links[i].href) {
           found = true;
-          // console.log("github的链接在新标签页打开: not_blank_all found", found);
+          // console.log("github的鏈接在新標籤頁打開: not_blank_all found", found);
           break;
         }
       }
@@ -126,7 +126,7 @@ function run(_i = 0) {
       links[i].onclick = function () {
         window.open(url);
       };
-      // console.log("github的链接在新标签页打开 run done", links[i]);
+      // console.log("github的鏈接在新標籤頁打開 run done", links[i]);
     }
   }
 }
