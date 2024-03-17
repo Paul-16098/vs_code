@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      3.1.5
+// @version      3.1.6
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -39,6 +39,11 @@ config:
   is_hook_alert:
     title: 是否劫持alert
     description: 是否劫持alert
+    type: checkbox
+    default: true
+  auto_bookcase:
+    title: 自動書籤
+    description: 自動書籤
     type: checkbox
     default: true
 ---
