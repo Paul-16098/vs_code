@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ixdzs8.tw
 // @namespace    pl816098
-// @version      1.2.9
+// @version      1.2.9.1
 // @description  自用
 // @author       paul
 // @match        https://ixdzs8.com/read/*/*.html

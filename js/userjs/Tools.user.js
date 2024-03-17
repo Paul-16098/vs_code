@@ -2,7 +2,7 @@
 // @name         Tools
 // @namespace    pl816098
 // @description  paul Tools
-// @version      2.2.4
+// @version      2.2.4.1
 // @match        *://*/*
 // @author       paul
 // @license      MIT
@@ -44,27 +44,27 @@ _unsafeWindow.debug = (str, title = "INFO", type = "log") => {
 /*
 https://scriptcat.org/zh-TW/script-show-page/637/
   ajaxHooker.hook
-核心方法，通过一个回调函数进行劫持，每次请求发生时自动调用回调函数。可以将所有劫持放在同一回调函数中，也可以多次调用hook方法。示例：
+核心方法，通過一個回調函數進行劫持，每次請求發生時自動調用回調函數。可以將所有劫持放在同一回調函數中，也可以多次調用hook方法。示例：
 
 ajaxHooker.hook(request => {
     console.log(request);
 });
-参数request是一个对象，其包含以下属性：
+參數request是一個對象，其包含以下屬性：
 type
-只读属性。一个字符串，表明请求类型是xhr还是fetch。
+只讀屬性。一個字符串，表明請求類型是xhr還是fetch。
 async
-只读属性。异步请求为true，同步请求为false，异步特性无法作用于同步请求。
+只讀屬性。異步請求為true，同步請求為false，異步特性無法作用於同步請求。
 url
 method
-请求的url和method，可以直接修改。
+請求的url和method，可以直接修改。
 abort
-是否取消请求，设置为true即可取消本次请求。
+是否取消請求，設置為true即可取消本次請求。
 headers
-请求头，可以直接修改。
+請求頭，可以直接修改。
 data
-请求携带的数据，可以直接修改。
+請求攜帶的數據，可以直接修改。
 response
-响应内容，必须通过一个回调函数进行读取和修改。响应内容为一个对象，包含finalUrl、status、responseHeaders和被读取的响应数据，除响应数据可修改，其他属性是只读的。响应数据是哪个属性取决于哪个属性被读取，xhr可能的属性为response、responseText、responseXML，fetch可能的属性为arrayBuffer、blob、formData、json、text。在控制台输出时，xhr响应将包含所有属性，但只有被读取过的属性具有明确的值。修改对应属性即可影响读取结果，进而实现响应数据的修改。示例：
+響應內容，必須通過一個回調函數進行讀取和修改。響應內容為一個對象，包含finalUrl、status、responseHeaders和被讀取的響應數據，除響應數據可修改，其他屬性是隻讀的。響應數據是哪個屬性取決於哪個屬性被讀取，xhr可能的屬性為response、responseText、responseXML，fetch可能的屬性為arrayBuffer、blob、formData、json、text。在控制枱輸出時，xhr響應將包含所有屬性，但只有被讀取過的屬性具有明確的值。修改對應屬性即可影響讀取結果，進而實現響應數據的修改。示例：
 
 ajaxHooker.hook(request => {
     if (request.url === 'https://www.example.com/') {
@@ -74,13 +74,13 @@ ajaxHooker.hook(request => {
         };
     }
 });
-异步特性
-注意：异步特性无法作用于同步请求，但同步修改仍然有效。
-你可以将以上所有可修改属性赋值为Promise，原请求将被阻塞直至Promise完成（若发生reject，数据将不会被修改），此特性可用于异步劫持。以下是一个异步修改响应数据的例子：
+異步特性
+注意：異步特性無法作用於同步請求，但同步修改仍然有效。
+你可以將以上所有可修改屬性賦值為Promise，原請求將被阻塞直至Promise完成（若發生reject，數據將不會被修改），此特性可用於異步劫持。以下是一個異步修改響應數據的例子：
 
 ajaxHooker.hook(request => {
     request.response = res => {
-        const responseText = res.responseText; // 注意保存原数据
+        const responseText = res.responseText; // 注意保存原數據
         res.responseText = new Promise(resolve => {
             setTimeout(() => {
                 resolve(responseText + 'test');
@@ -88,7 +88,7 @@ ajaxHooker.hook(request => {
         });
     };
 });
-也可以传入async回调函数以实现异步：
+也可以傳入async回調函數以實現異步：
 
 ajaxHooker.hook(async request => {
     request.data = await modifyData(request.data);
@@ -97,25 +97,25 @@ ajaxHooker.hook(async request => {
     };
 });
 ajaxHooker.filter
-应于hook方法之前执行，此方法若尽早执行，有助于提升性能。
-为hook方法设置过滤规则，只有符合规则的请求才会触发hook。过滤规则是一个对象数组，参考下例：
+應於hook方法之前執行，此方法若儘早執行，有助於提升性能。
+為hook方法設置過濾規則，只有符合規則的請求才會觸發hook。過濾規則是一個對象數組，參考下例：
 
 ajaxHooker.filter([
     {type: 'xhr', url: 'www.example.com', method: 'GET', async: true},
     {url: /^http/},
 ]);
-type 可选，应是xhr或fetch。
-url 可选，字符串或正则表达式，无需完全匹配。
-method 可选，不区分大小写。
-async 可选，布尔值。
+type 可選，應是xhr或fetch。
+url 可選，字符串或正則表達式，無需完全匹配。
+method 可選，不區分大小寫。
+async 可選，布爾值。
 
 ajaxHooker.protect
-如果库劫持失败，可能是其他代码对xhr/fetch进行了二次劫持，protect方法会尝试阻止xhr和fetch被改写。应于document-start阶段尽早执行，部分网页下可能引发错误，谨慎使用。示例：
+如果庫劫持失敗，可能是其他代碼對xhr/fetch進行了二次劫持，protect方法會嘗試阻止xhr和fetch被改寫。應於document-start階段儘早執行，部分網頁下可能引發錯誤，謹慎使用。示例：
 
 ajaxHooker.protect();
 
 ajaxHooker.unhook
-将xhr和fetch恢复至劫持前的状态，调用此方法后，hook方法不再生效。示例：
+將xhr和fetch恢復至劫持前的狀態，調用此方法後，hook方法不再生效。示例：
 
 ajaxHooker.unhook();
 */
