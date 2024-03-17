@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         github的链接在新标签页打开
 // @namespace    pl816098
-// @version      1.0.15
+// @version      1.1.0-bate(1.0)
 // @description  让github的链接默认是在新标签页中打开而不是当前页打开
 // @author       pl816098
 // @match        https://github.com/*
@@ -24,7 +24,18 @@ config:
  ==/UserConfig== */
 
 const host = GM_getValue("config.host", true);
-const not_blank = ['a[data-testid="raw-button"]'];
+const not_blank = [
+  'a[data-testid="raw-button"]' /*
+  "#repo-content-pjax-container > div > div > div > div.Layout-main > react-partial > div > div > div > div > div > div> nav > ul > li:nth-child(1) > a",
+  "#repo-content-pjax-container > div > div > div > div.Layout-main > react-partial > div > div > div > div > div > div> nav > ul > li:nth-child(2) > a",
+  "#repo-content-pjax-container > div > div > div > div.Layout-main > react-partial > div > div > div > div > div > div> nav > ul > li:nth-child(3) > a",
+  "#repo-content-pjax-container > div > div > div > div.Layout-main > react-partial > div > div > div > div > div > div> nav > ul > li:nth-child(4) > a",
+  "#repo-content-pjax-container > div > div > div > div.Layout-main > react-partial > div > div > div > div > div > div> nav > ul > li:nth-child(5) > a",
+  "#repo-content-pjax-container > div > div > div > div.Layout-main > react-partial > div > div > div > div > div > div> nav > ul > li:nth-child(6) > a",*/,
+];
+const not_blank_all = [
+  "#repo-content-pjax-container > div > div > div > div.Layout-main > react-partial > div > div > div > div > div > div> nav > ul > li > a",
+];
 
 setTimeout(() => {
   run();
@@ -53,6 +64,27 @@ function run(_i = 0) {
         found = true;
         // console.log("github的链接在新标签页打开: not_blank found", found);
         break;
+      }
+    }
+    for (
+      let ii = 0;
+      ii < not_blank_all.length && not_blank_all.length > 0;
+      ii++
+    ) {
+      // console.log(
+      // "github的链接在新标签页打开: for(2), ii: ",
+      // ii,
+      // ", not_blank[ii]: ",
+      // not_blank[ii]
+      // );
+      let element = document.querySelectorAll(not_blank_all[ii]);
+      for (let iii = 0; iii < element.length && element.length > 0; iii++) {
+        const element2 = element[iii];
+        if (element2 && element2.href === links[i].href) {
+          found = true;
+          // console.log("github的链接在新标签页打开: not_blank_all found", found);
+          break;
+        }
       }
     }
     if (!found) {
