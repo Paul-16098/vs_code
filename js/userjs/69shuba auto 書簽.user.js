@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
-// @version      3.1.9
+// @version      3.1.10
 // @description  自動書籤,更改css,可以在看書頁(https://www.69shuba.com/txt/*/*)找到作者連結
 // @author       pl816098
 // @match        https://www.69shuba.com/txt/*/*
@@ -268,7 +268,10 @@ if (pattern.book.is(url)) {
   spanElement.textContent = spanElement.textContent.trim().split(" ")[0];
   spanElement.appendChild(aElement);
 
+  let r = 0;
   get_title: {
+    r++;
+    console.log("get_title,", r);
     try {
       let title;
       if (typeof bookinfo.articlename === "string") {
@@ -286,7 +289,11 @@ if (pattern.book.is(url)) {
           "div.container > div.mybox > div.tools"
         );
       }
-      if (yueduad1 === null || yueduad1 === undefined) {
+      if (
+        yueduad1 === null ||
+        yueduad1 === undefined ||
+        typeof yueduad1 === "undefined"
+      ) {
         break get_title;
       }
       let titleElement = document.createElement("a");
