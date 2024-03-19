@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
@@ -59,7 +60,7 @@ debug:
 // 希望支持// @grant        window.close
 
 const debug_log = GM_getValue("debug.debug_log", false);
-const is_close = GM_getValue("config.is_close", true);
+// const is_close = GM_getValue("config.is_close", true);
 const auto_bookcase = GM_getValue("config.auto_bookcase", true);
 
 const _unsafeWindow =
