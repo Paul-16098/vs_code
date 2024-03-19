@@ -2,7 +2,7 @@
 // @name         Tools
 // @namespace    pl816098
 // @description  paul Tools
-// @version      2.2.4.1
+// @version      2.2.4.2
 // @match        *://*/*
 // @author       paul
 // @license      MIT

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         czbooks.net
 // @namespace    pl816098
-// @version      1.1.5.1
+// @version      1.1.5.2
 // @description  自用
 // @author       pl816098
 // @match        https://czbooks.net/n/*/*
@@ -14,15 +14,9 @@
 // @updateURL    https://github.com/Paul-16098/vs_code/raw/main/js/userjs/czbooksnet.user.js
 // ==/UserScript==
 
-set_GM: {
-  var _GM_xmlhttpRequest,
-    _GM_registerMenuCommand,
-    _GM_notification,
-    _GM_addStyle,
-    _GM_openInTab,
-    _GM_info,
-    _GM_setClipboard;
-  GM_addStyle: {
+{
+  var _GM_addStyle;
+  {
     if (typeof GM_addStyle !== "undefined") {
       _GM_addStyle = GM_addStyle;
     } else if (

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         github的鏈接在新標籤頁打開
 // @namespace    pl816098
-// @version      1.1.2.1
+// @version      1.1.2.2
 // @description  讓github的鏈接默認是在新標籤頁中打開而不是當前頁打開
 // @author       pl816098
 // @match        https://github.com/*
@@ -42,7 +42,7 @@ setTimeout(() => {
   const targetElement = document;
 
   // 創建一個 MutationObserver 實例
-  const observer = new MutationObserver(function (mutationsList, observer) {
+  const observer = new MutationObserver(function () {
     // 在回調函數中處理變化
     console.log("目標元素: document變化");
     run();

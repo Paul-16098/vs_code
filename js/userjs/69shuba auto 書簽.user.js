@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 // ==UserScript==
 // @name         69shuba auto 書簽
 // @namespace    pl816098
