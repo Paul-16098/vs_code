@@ -18,10 +18,12 @@ if yn.lower() == "y":
         files = [filename for filename in os.listdir() if p in filename and filename != script_file and os.path.isfile(filename) and filename != "out[{}].txt".format(p)]
         for file in files:
             f.write(file + "\n")
-else:
+else :
     files = [filename for filename in os.listdir() if p in filename and filename != script_file and os.path.isfile(filename) and filename != "out[{}].txt".format(p)]
+    print("======out[{}] start======".format(p))
     for file in files:
         print(file)
+    print("======out[{}] end======".format(p))
 
 print("處理結束，按 Enter 鍵退出: ")
 input()
