@@ -2,7 +2,7 @@
 // @name         Tools
 // @namespace    pl816098
 // @description  paul Tools
-// @version      2.2.4.2
+// @version      2.2.5.2
 // @match        *://*/*
 // @author       paul
 // @license      MIT
@@ -28,16 +28,15 @@
 const _unsafeWindow =
   typeof unsafeWindow === "undefined" ? window : unsafeWindow; //兼容 ios userscripts 的寫法
 const ajaxHooker_on = GM_getValue("公開接口.ajaxHooker", false);
-_unsafeWindow.debug = (str, title = "INFO", type = "log") => {
-  if (
-    !(type === "log" || type === "info" || type === "error" || type === "warn")
-  ) {
-    console.warn("錯誤: type != log || info || warn || error but = " + type);
+_unsafeWindow.debug = (type = "log", str, ...str2) => {
+  if (!["log", "warn", "error", "debug"].includes(type)) {
+    type = "log";
   }
   console[type](
-    `%c ${title}:\n`,
-    "color: white;font-size: large;font-weight: bold;background-color: black;",
-    str
+    `%c 【${type}】:\n`,
+    "/*color: white;background-color: black;*/font-size: large;font-weight: bold;",
+    str,
+    str2
   );
 };
 
